@@ -79,7 +79,7 @@
 
 \begin{prop}
   Jei $A_1$ ir $A_2$ yra baigtinio automato kalbos, tai ir 
-  $A_1 \bigcup A_2$, bei $A_1 \bigcap A_2$ yra baigtinio automato kalbos.
+  $A_1 \cup A_2$, bei $A_1 \cap A_2$ yra baigtinio automato kalbos.
 
   \begin{proof}
     Grafų $G_1$ ir $G_2$ Dekarto sandauga yra grafas, kurio viršūnės yra 
@@ -89,10 +89,10 @@
     viršūnės $q_i$ į viršūnę $q_k$ su simboliu $a$ ir grafe $G_2$ eina
     briauna iš viršūnės $q_j$ į viršūnę $q_l$ su simboliu $a$.
     
-    $F_{A \bigcup B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
+    $F_{A \cup B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
     arba $q_j \in F_{B}$.
 
-    $F_{A \bigcap B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
+    $F_{A \cap B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
     ir $q_j \in F_{B}$.
   \end{proof}
 \end{prop}
@@ -172,7 +172,7 @@ $f(n)$, jei $\exists c : T_{M}(n) = cf(n), \forall n$.
   \hfill \\
   \begin{itemize}
     \item $L = DSPACE(\log n)$
-    \item $NL = NSPCE(\log n)$
+    \item $NL = NSPACE(\log n)$
     \item $P = DTIME(n^k)$, kur $k$ – konstanta.
     \item $NP = NTIME(n^k)$, kur $k$ – konstanta.
     \item $PSPACE = DSPACE(n^k)$, kur $k$ – konstanta.
