@@ -1,0 +1,187 @@
+\chapter{Turingo mašinos ir jų variantai}
+
+\begin{defn}[Determinuota vienajuostė Turingo mašina]
+  Ketvertas $<\Sigma,Q,F,\delta>$, kur:
+  \begin{description}
+    \item[$\Sigma$] – baigtinė aibė – abėcėlė. (Jei nepaminėta kitaip:
+      $\Sigma = \{0, 1, b\}$.)
+    \item[$Q$] – baigtinė aibė – būsenų aibė. 
+      ($Q = \{q_0,q_1,\dotsc,q_n\}$, kur $q_0$ – pradinė būsena.)
+    \item[$F$] – galutinių būsenų aibė ($F \subset Q$).
+    \item[$\delta$] – perėjimų funkcija. 
+      ($\delta: Q \times \Sigma \to Q \times \Sigma \times \{K,N,D\}$)
+  \end{description}
+\end{defn}
+
+\begin{defn}[Apibrėžta \emph{TM}]
+  Sakysime, jog \emph{TM} su pradiniais duomenimis $X$ yra apibrėžta, jei 
+  pradžioje į duomenų juostą įrašius žodį $X$, \emph{TM} po baigtinio
+  žingsnių kiekio patenka į vieną iš galutinių būsenų.
+\end{defn}
+
+\begin{defn}[Turingo mašina apskaičiuoja funkciją]
+  Sakysime, kad \emph{TM} $M$ apskaičiuoja funkciją 
+  $f(x_1,x_2,\dotsc,x_n)$, jei egzistuoja toks kodavimas abėcėlės 
+  $\Sigma$ simboliais $\cod(x_1,x_2,\dotsc,x_n) = \tilde{x}$, kuriam
+  teisinga:
+  \begin{enumerate}
+    \item jei $f(x_1,x_2,\dotsc,x_n) = y$ (funkcija apibrėžta), tada 
+      \emph{TM} $M$ su pradiniais duomenimis $\cod(x_1,x_2,\dotsc,x_n)$
+      yra apibrėžta ir baigus darbą, į dešinę nuo skaitymo galvutės yra
+      žodis $\cod(y)$;
+    \item jei $f(x_1,x_2,\dotsc,x_n)$ – neapibrėžta, tada \emph{TM} $M$
+      su pradiniais duomenimis $\cod(x_1,x_2,\dotsc,x_n)$ irgi yra
+      neapibrėžta.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[Determinuota m-juostė \emph{TM}]
+  Ketvertas $<\Sigma,Q,F,\delta>$, kur:
+  \begin{description}
+    \item[$\Sigma$] – baigtinė aibė – abėcėlė.
+    \item[$Q$] – baigtinė būsenų aibė.
+    \item[$F$] – galutinių būsenų aibė. ($F \subset Q$)
+    \item[$\delta$] – perėjimų funkcija. \\
+      ($\delta: Q \times \underbrace{\Sigma \times \Sigma \times \cdots%
+        \times \Sigma}_{m} \to Q \times \underbrace{%
+          \Sigma \times \Sigma \times \cdots \times \Sigma}_{m}%
+        \times \underbrace{
+          \{K,D,N\} \times \{K,D,N\} \times \cdots \times \{K,D,N\}}_{m}$)
+  \end{description}
+\end{defn}
+
+\begin{defn}[Nedeterminuota Turingo mašina]
+  Turingo mašina, kurios perėjimų funkcija yra daugiareikšmė.
+\end{defn}
+
+
+\section{Baigtiniai automatai}
+
+\begin{defn}[Baigtinis automatas]
+  Vienajuostė determinuota Turiningo mašina, kurios perėjimu funkcija
+  yra $\delta(q_i, a) = (q_j, a, D)$ ir kuri (\emph{TM}), baigia darbą
+  tada, kai pasiekia pirmąją tuščia ląstelę.
+\end{defn}
+
+\begin{defn}[Baigtinio automato kalba]
+  Tokia žodžių, su kuriais automatas baigia darbą vienoje iš galutinių 
+  būsenų, aibė.
+\end{defn}
+
+\begin{prop}
+  Baigtinė aibė yra baigtinio automato kalba.
+\end{prop}
+
+\begin{prop}
+  Baigtinio automato kalbos $A$ papildinys $\bar{A}$ irgi yra baigtinio
+  automato kalba.
+\end{prop}
+
+\begin{prop}
+  Jei $A_1$ ir $A_2$ yra baigtinio automato kalbos, tai ir 
+  $A_1 \bigcup A_2$, bei $A_1 \bigcap A_2$ yra baigtinio automato kalbos.
+
+  \begin{proof}
+    Grafų $G_1$ ir $G_2$ Dekarto sandauga yra grafas, kurio viršūnės yra 
+    visos įmanomos poros $(q_i,q_j)$, kur $q_i$ yra $G_1$ viršūnė, o 
+    $q_j$ – $G_2$ viršūnė. Iš viršūnės $(q_i,q_j)$ eis briauna į 
+    viršūnę $(q_k,q_l)$ su simboliu $a$, jei grafe $G_1$ eina briauna iš
+    viršūnės $q_i$ į viršūnę $q_k$ su simboliu $a$ ir grafe $G_2$ eina
+    briauna iš viršūnės $q_j$ į viršūnę $q_l$ su simboliu $a$.
+    
+    $F_{A \bigcup B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
+    arba $q_j \in F_{B}$.
+
+    $F_{A \bigcap B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
+    ir $q_j \in F_{B}$.
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  Baigtinių automatų kalbų
+  \begin{enumerate}
+    \item konkatenacija $:= \{ uv : u \in A_1, v \in A_2 \}$, kur 
+      $A_1$, $A_2$ – automato kalbos;
+    \item iteracija $:=\{u_1 u_2 \dots u_k : u_i \in A_i, i=1,2,\dotsc,k\}$,
+      kur $A_1$ – automato kalba;
+    \item atspindys $:=\{a_1 a_2 \dots a_n : a_n a_{n-1} \dots a_1 %
+      \in A_1 \}$, kur $A_1$ – automato kalba
+  \end{enumerate}
+    irgi yra baigtinių automatų kalbos.
+\end{prop}
+
+\section{Algoritmų sudėtingumas}
+
+\begin{notation}
+  \hfill \\
+  \begin{description}
+    \item[$i(v)$] – žodžio $v$ ilgis;
+    \item[$t(v)$] – žingsnių kiekis, kurį atlieka \emph{TM}, jei 
+      pradinių duomenų juostoje yra žodis $v$.
+    \item[$s(v)$] – panaudotų ląstelių kiekis, kurį sunaudojo \emph{TM},
+      jei pradinių duomenų juostoje buvo žodis $v$.
+  \end{description}
+\end{notation}
+
+\begin{defn}[Turingo mašinos M sudėtingumas laiko atžvilgiu]
+  Funkcija: $T_{M} (n) = \max \{ t(v) : i(v) = n \}$.
+\end{defn}
+
+\begin{defn}[Turingo mašinos M sudėtingumas atminties atžvilgiu]
+  Funkcija: $S_{M} (n) = \max \{ s(v) : i(v) = n \}$.
+\end{defn}
+
+\begin{defn}[Turingo mašinos kalba]
+  Žodžių, su kuriais \emph{TM} baigia darbą galutinėje būsenoje, aibė.
+\end{defn}
+
+\begin{defn}[Problema (aibė) išsprendžiama su \emph{TM}]
+  Sakysime, jog problema (aibė) A yra išsprendžiama su Turingo mašina,
+  jei yra tokia Turingo mašina, kurios kalba yra A.
+\end{defn}
+
+Sakysime, kad \emph{TM} sudėtingumas atminties atžvilgiu yra 
+$f(n)$, jei $\exists c : S_{M}(n) = cf(n), \forall n$.
+
+Sakysime, kad \emph{TM} sudėtingumas laiko atžvilgiu yra 
+$f(n)$, jei $\exists c : T_{M}(n) = cf(n), \forall n$.
+
+\begin{defn}[Sudėtingumo klasės]
+  \hfill \\
+  \begin{itemize}
+    \item $DTIME(f(n))$ – sudėtingumo klasė, kuriai priklauso visi
+      uždaviniai, kuriems egzistuoja juos sprendžianti daugiajuostė 
+      determinuota \emph{TM}, kurios sudėtingumas laiko atžvilgiu 
+      yra $f(n)$.
+    \item $NTIME(f(n))$ – sudėtingumo klasė, kuriai priklauso visi
+      uždaviniai, kuriems egzisutoja juos sprendžianti daugiajuostė 
+      nedeterminuota \emph{TM}, kurios sudėtingumas laiko atžvilgiu
+      yra $f(n)$.
+    \item $DSPACE(f(n))$ – sudėtingumo klasė, kuriai priklauso visi
+      uždaviniai, kuriems egzistuoja juos sprendžianti daugiajuostė
+      determinuota \emph{TM}, kurios sudėtingumas atminties atžvilgiu
+      yra $f(n)$.
+    \item $NSPACE(f(n))$ – sudėtingumo klasė, kuriai priklauso visi
+      uždaviniai, kuriems egzsituoja juos sprendžianti daugiajuostė
+      nedeterminuota \emph{TM}, kurios sudėtingumas atminties atžvilgiu
+      yra $f(n)$.
+  \end{itemize}
+\end{defn}
+
+\begin{defn}[Sudėtingumo klasės]
+  \hfill \\
+  \begin{itemize}
+    \item $L = DSPACE(\log n)$
+    \item $NL = NSPCE(\log n)$
+    \item $P = DTIME(n^k)$, kur $k$ – konstanta.
+    \item $NP = NTIME(n^k)$, kur $k$ – konstanta.
+    \item $PSPACE = DSPACE(n^k)$, kur $k$ – konstanta.
+    \item $EXP = DTIME(2^{n^{k}})$, kur $k$ – konstanta.
+  \end{itemize}
+\end{defn}
+
+\begin{prop}
+  $L \subseteq NL \subseteq P \subseteq NP %
+    \subseteq PSPACE \subseteq EXP$
+  ir $NL \not = PSPACE$ ir $P \not = EXP$.
+\end{prop}
