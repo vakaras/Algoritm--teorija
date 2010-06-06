@@ -1,0 +1,240 @@
+\chapter{Disjunktų dedukcinė sistema. Rezoliucijų metodas}
+
+\begin{defn}[Disjuktas]
+  Literų disjunkcija. Litera yra kintamasis arba kintamasis su neigimu.
+\end{defn}
+
+\begin{defn}[Atkirtos taisyklė (\emph{AT})]
+  \[
+  \begin{array}{c l}
+    C' \lor p \lor C'' \qquad D' \lor \neg p \lor D'' &%
+      \text{, kur $p$ – litera, o $C',C'',D',D''$ – disjunktai.} \\
+    \cline{1-1}
+    C' \lor C'' \lor D' \lor D'' &
+  \end{array}
+  \]
+\end{defn}
+
+\begin{defn}[$S \vdash C$]
+  Sakysime, kad disjunktas $C$ yra išvedamas iš disjunktų aibės $S$, jei
+  galima parašyti tokią disjunktų seką, kur kiekvienas disjunktas:
+  \begin{itemize}
+    \item arba iš aibės $S$,
+    \item arba gautas pagal atkirtos taisyklę iš jau parašytų 
+  \end{itemize}
+  ir kuri (seka) baigiasi disjunktu $C$.
+\end{defn}
+
+\begin{defn}[Prieštaringa formulių aibė]
+  Sakysime, kad formulių aibė $S$ yra prieštaringa, jei su \emph{bet kokia}
+  interpretacija $\nu$ \emph{bent viena} formulė iš aibės $S$ yra 
+  klaidinga.
+  \begin{note}
+    Jei $S$ nėra prieštaringa, tai $S$ – įvykdoma.
+  \end{note}
+\end{defn}
+
+\begin{prop}
+  \label{tg6}
+  Jei iš disjunktų aibės $S$ išvedamas disjunktas $C$ ir disjunktas $C$
+  nėra įvykdomas (tapačiai klaidingas), tai $S$ – prieštaringa.
+
+  \begin{proof}
+    (Prieštaros būdu.)
+
+    Tarkime $S \vdash C$ ir $C$ – nėra įvykdomas, bet aibė $S$ nėra 
+    prieštaringa.
+
+    Jei aibė $S$ nėra prieštaringa, tai yra tokia interpretacija $\nu$,
+    su kuria visi aibės $S$ disjunktai bus teisingi:
+    \[
+    \forall D \, (D \in S) : \nu(D) = 1
+    \]
+
+    Parodysime, jog visi iš aibės $S$ išvedami disjunktai yra teisingi su 
+    ta pačia interpretacija $\nu$.
+
+    Įrodymas matematinės indukcijos metodu, pagal išvedimo ilgį $l$:
+
+    \begin{enumerate}
+      \item Jei $l = 1$, tai $D_{1} \in S \implies \nu(D_{1}) = 1$,
+        nes visi aibės $S$ disjunktai yra teisingi su interpretacija $\nu$.
+      \item Tarkime, kad $\forall i \, (i < m),\: \nu(D_{i}) = 1$.
+      \item Panagrinėkime $\nu(D_{m})$:
+        \begin{itemize}
+          \item Jei $D_{m} \in S$, tai $\nu(D_{m}) = 1$.
+          \item Jei $D_{m} \not \in S$, tai $D_{m}$ gautas iš kažkokių 
+            $D_{a}$ ir $D_{b}$ pagal atkirtos taisyklę. Pagal matematinės
+            indukcijos prielaidą $\nu(D_{a}) = \nu(D_{b}) = 1$, 
+            nes $a, b < m$. Kadangi 
+            \[ 
+            \begin{array}{c l} 
+              D_{a} \qquad D_{b} & \text{(AT)} \\ 
+              \cline{1-1} 
+              D_{m} & {} 
+            \end{array} 
+            \]
+            tai $D_{a} = D'_{a} \lor p$ ir $D_{b} = D'_{b} \lor \neg p$, o
+            $D_{m} = D'_{a} \lor D'_{b}$.
+            \begin{itemize}
+              \item Jei $\nu(p) = 1$, tai $\nu(D'_{b}) = 1$(, nes 
+                $\nu(D'_{b} \lor \neg p) = 1$) 
+                $\implies \nu(D_{m}) = \nu(D'_{b} \lor D'_{a}) = 1$.
+              \item Jei $\nu(\neg p) = 1$, tai $\nu(D'_{a}) = 1$(, nes
+                $\nu(D'_{a} \lor p) = 1$)
+                $\implies \nu(D_{m}) = \nu(D'_{b} \lor D'_{a}) = 1$.
+            \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+    Naudodami matematinę indukciją gavome, kad visi išvedami disjunktai
+    yra teisingi su interpretacija $\nu$. Tada ir $\nu(C) = 1 \implies$
+    prieštara, nes disjunktas $C$ nėra įvykdomas.
+  \end{proof}
+
+\end{prop}
+
+Tuščias disjunktas nėra įvykdomas (yra tapačiai klaidingas).
+\begin{notation}
+  $\Box$ – tuščias disjunktas.
+\end{notation}
+
+Jei iš aibės $S \vdash \Box$, tai aibė $S$ – prieštaringa.
+
+\begin{prop}
+  Jei disjunktų aibė $S$ yra prieštaringa, tai iš jos galima išvesti 
+  tuščią disjunktą $S \vdash \Box$.
+
+  \begin{proof}
+    (Matematinės indukcijos būdu pagal skirtingų kintamųjų kiekį $n$ 
+    aibėje $S$.)
+
+    \begin{description}
+      \item[Bazė] Jei $n = 1$, tai aibė $S$ gali būti: 
+        $\underbrace{\{p\},\: \{\neg p\},}_{\neg \text{prieštaringos}}%
+        \:\{p,\neg p\}$.
+
+        $S = \{p, \neg p\}$ – prieštaringa aibė:
+        \[
+        \begin{array}{l l l}
+          1. & p & (\text{iš }S) \\
+          2. & \neg p & (\text{iš }S) \\
+          3. & \Box & (\text{pagal \emph{AT} iš 1 ir 2})
+        \end{array}
+        \]
+        Jei aibėje $S$ yra vienas kintamasis, tai jei teisinga 
+        $S$ – prieštaringa, tai iš jos išvedama $\Box$.
+
+      \item[Prielaida] Tarkime, jei aibėje yra $n < m$ skirtingų 
+        kintamųjų, tai jei $S$ – prieštaringa, tai $S \vdash \Box$.
+
+      \item[Indukcinis žingsnis] Tegu disjunktų aibė $S$ turi $n = m$
+        skirtingų kintamųjų.
+
+        Padalinkime aibės $S$ disjunktus į 3 aibes (grupes):
+        \begin{description}
+          \item[$S_{p}$] priklauso tie aibės $S$ disjunktai, kurie neturi
+            literos $p$.
+          \item[$S_{p}^{+}$] priklauso tie aibės $S$ disjunktai, kurie turi
+            literą $p$ (be neigimo).
+          \item[$S_{p}^{-}$] priklauso tie aibės $S$ disjunktai, kurie turi
+            literą $\neg p$ (su neigimu).
+        \end{description}
+        Tada: $S = S_{p} \bigcup S_{p}^{+} \bigcup S_{p}^{-}$.
+
+        Nagrinėkime aibę $S' = S_{p} \bigcup \at(S_{p}^{+}, S_{p}^{-})$,
+        kur $\at(S_{p}^{+}, S_{p}^{-})$ – yra disjunktų aibė, kuri yra
+        gauta pritaikius \emph{AT} visiems disjunktams iš aibių 
+        $S_{p}^{+}$ ir $S_{p}^{-}$ pagal kintamąjį $p$. Tegu:
+        \[
+        \begin{array}{c l l}
+          S_{p}^{+} & = \{C_1 \lor p, C_2 \lor p, \dotsc, C_v \lor p \}%
+            & \text{ir} \\
+          S_{p}^{-} & = \{D_1 \lor \neg p, D_2 \lor \neg p, \dotsc,%
+            D_r \lor \neg p \} & {}
+        \end{array}
+        \]
+        tada 
+        \begin{align*}
+          \at(S_{p}^{+}, S_{p}^{-}) = \{%
+          & C_1 \lor D_1, C_1 \lor D_2, \dotsc, C_1 \lor D_r \\
+          & C_2 \lor D_1, C_2 \lor D_2, \dotsc, C_2 \lor D_r \\
+          & \cdots \\
+          & C_v \lor D_1, C_v \lor D_2, \dotsc, C_v \lor D_r \}
+        \end{align*}
+        Aibėje $S'$ yra $< m$ kintamųjų (nes nėra $p$), todėl aibei 
+        $S'$ galioja prielaida: jei $S'$ – prieštaringa 
+        $\implies S' \vdash \Box$. Parodysime, jog $S$ ir $S'$ arba
+        abi kartu įvykdomos, arba neįvykdomos:
+        \begin{enumerate}
+          \item Jei $S$ – įvykdoma, tai 
+            $\exists \nu : \nu(D) = 1, \forall D \, (D \in S)$. Taip
+            pat ir visi disjunktai iš aibės $S_{p}$ yra įvykdomi su 
+            ta pačia interpretacija $\nu$, nes $S_{p} \subset S$.
+            Taip pat visi disjunktai iš aibės $\at(S_{p}^{+}, S_{p}^{-})$
+            yra įvykdomi su interpretacija $\nu$, nes jie yra išvesti iš
+            aibės $S$ pritaikius \emph{AT} (žr. \ref{tg6} teiginio 
+            įrodymą). Taigi su $\nu$ teisingi visi aibės $S'$ disjunktai,
+            tai yra $S'$ – įvykdoma.
+          \item Jei $S'$ – įvykdoma, tai yra interpretacija $\nu$, su kuria
+            visi aibės $S'$ disjunktai yra teisingi. Kadangi aibėje 
+            $S'$ nėra kintamojo $p$, tai interpretacija $\nu$ jam 
+            nepriskiria nei 0, nei 1. Papildome interpretaciją $\nu$
+            apibrėždami ar kintamasis $p$ yra teisingas ar klaidingas,
+            taip kad su interpretacija $\nu$ visi aibės $S$ disjunktai
+            būtų teisingi.
+            \begin{enumerate}
+              \item Jei yra toks $i \, (i=1,2,\dotsc,v)$, su kuriuo 
+                $\nu(C_{i}) = 0$, tada apibrėžiame $\nu(p) = 1$, tada
+                $\nu(C_1 \lor p) = \nu(C_2 \lor p) = \dots =%
+                \nu(C_v \lor p) = 1$
+
+                Kadangi visi aibės $\at(S_{p}^{+}, S_{p}^{-})$ yra 
+                teisingi su interpretacija $\nu$, tai 
+                $\nu(C_i \lor D_1) = \dots = \nu(C_i \lor D_r) = 1$, bet
+                $\nu(C_i) = 0$, todėl 
+                $\nu(D_1) = \nu(D_2) = \dots = \nu(D_r) = 1 \implies %
+                \nu(D_1 \lor \neg p) = \dots = \nu(D_r \lor \neg p) = 1$
+
+                Gavome, kad su $\nu$ visi $S_{p}^{+}, S_{p}^{-}$ ir 
+                $S_{p}$ yra teisingi $\implies S$ – įvykdoma.
+
+              \item Jei nėra tokio $i \, (i=1,2,\dotsc,v)$, su kuriuo
+                $\nu(C_{i}) = 0$, tada 
+                $\nu(C_1) = \nu(C_2) = \dots = \nu(C_v) = 1$, tada ir
+                $\nu(C_1 \lor p) = \nu(C_2 \lor p) = \dots =%
+                  \nu(C_v \lor p) = 1$.
+
+                Apibrėžkime $\nu(p) = 0$, tada 
+                $\nu(D_{1} \lor \neg p) = \nu(D_{2} \lor \neg p) = \dots%
+                \nu(D_{r}) = 1$.
+
+                Gavome, kad su $\nu$ visi $S_{p}^{+}, S_{p}^{-}$ ir 
+                $S_{p}$ yra teisingi $\implies S$ – įvykdoma.
+
+            \end{enumerate}
+            Gavome, kad jeigu $S'$ įvykdoma, tai ir $S$ yra įvykdoma.
+
+        \end{enumerate} 
+        Aibėje $S'$ yra $< m$ kintamųjų, todėl jei $S'$ prieštaringa,
+        tai $S' \vdash \Box$ (prielaida). $S'$ – prieštaringa 
+        tada ir tik tada, kai $S$ – prieštaringa, todėl jei 
+        $S$ – prieštaringa, tai iš $S$ galima išvesti $\Box$.
+    \end{description}
+
+    \emph{Išvada}: $S \vdash \Box \iff S \text{ – prieštaringa}$.
+
+  \end{proof}
+
+\end{prop}
+
+\section{Rezoliucijų metodas}
+
+Jei norime patikrinti ar iš prielaidų $A_1,A_2,\dotsc,A_n$ seka išvada $F$:
+\begin{align*}
+  A_1,A_2,\dotsc,A_n \vdash F%
+  &\iff \text {aibė } B = \{A_1,A_2,\dotsc,A_n,\neg F\}%
+    \text{ – prieštaringa} \\
+  &\iff \text{disjunktų aibė (gauta paverčiant B aibės elementus į NKF)}\\
+  & \qquad  S = \{D_1,D_2,\dotsc,D_m\} \text{ – prieštaringa} \\
+  &\iff S \vdash \Box \text{ pagal disjunktų dedukcinę sistemą}.
+\end{align*}
