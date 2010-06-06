@@ -1,0 +1,119 @@
+\chapter{Sekvencinis skaičiavimas}
+
+\begin{defn}[Sekvencija]
+  Tokia išraiška $\underbrace{F_{1},F_{2},\dots,F_{n}}_{anticedentas}%
+  \vdash \underbrace{G_{1},G_{2},\dots,G_{m}}_{sukcedentas}$, jei 
+  \mbox{$n + m > 0$}.
+  \begin{note}
+    \hfill \\
+    \begin{itemize}
+      \item $\vdash F$ – formulė yra tapačiai teisinga.
+      \item $A_{1},A_{2},\dots,A_{n} \vdash F$ – iš prielaidų seka išvada F.
+      \item $A_{1},A_{2},\dots,A_{n} \vdash B_{1},B_{2},\dots,B_{m}$ – iš 
+        prielaidų seka bent viena iš išvadų $B_{1},\dots,B_{m}$.
+      \item $F \vdash$ – formulė yra tapačiai klaidinga.
+    \end{itemize} 
+  \end{note}
+\end{defn}
+
+\begin{defn}[Sekvencinis skaičiavimas G]
+  Skaičiavimas su aksioma $\Gamma',A,\Gamma'' \vdash \Delta',A,\Delta''$
+  ir taisyklėmis ($\Gamma,\Gamma',\Gamma'',\Delta,\Delta',\Delta''$ – 
+  formulių sekos, $A,B$ – formulės):
+  \begin{description}
+    \item[$(\vdash \neg)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',A,\Gamma'' \vdash \Delta',\Delta'' \\
+        \cline{1-1}
+        \Gamma',\Gamma'' \vdash \Delta',\neg A,\Delta''
+      \end{array}
+      \]
+    \item[$(\neg \vdash)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',\Gamma'' \vdash \Delta',A,\Delta'' \\
+        \cline{1-1}
+        \Gamma',\neg A,\Gamma'' \vdash \Delta',\Delta''
+      \end{array}
+      \]
+    \item[$(\vdash \lor)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',\Gamma'' \vdash \Delta',A,B,\Delta'' \\
+        \cline{1-1}
+        \Gamma',\Gamma'' \vdash \Delta',A \lor B,\Delta''
+      \end{array}
+      \]
+    \item[$(\lor \vdash)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',A,\Gamma'' \vdash \Delta',\Delta'' \qquad %
+        \Gamma',B,\Gamma'' \vdash \Delta',\Delta'' \\
+        \cline{1-1}
+        \Gamma',A \lor B,\Gamma'' \vdash \Delta',\Delta''
+      \end{array}
+      \]
+    \item[$(\vdash \land)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',\Gamma'' \vdash \Delta',A,\Delta'' \qquad %
+        \Gamma',\Gamma'' \vdash \Delta',B,\Delta'' \\
+        \cline{1-1}
+        \Gamma',\Gamma'' \vdash \Delta',A \land B, \Delta''
+      \end{array}
+      \]
+    \item[$(\land \vdash)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',A,B,\Gamma'' \vdash \Delta',\Delta'' \\
+        \cline{1-1}
+        \Gamma',A \land B,\Gamma'' \vdash \Delta',\Delta''
+      \end{array}
+      \]
+    \item[$(\vdash \to)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',A,\Gamma'' \vdash \Delta',B,\Delta'' \\
+        \cline{1-1}
+        \Gamma',\Gamma'' \vdash \Delta',A \to B,\Delta''
+      \end{array}
+      \]
+    \item[$(\to \vdash)$] 
+      \[
+      \begin{array}{c}
+        \Gamma',\Gamma'' \vdash \Delta',A,\Delta'' \qquad %
+        \Gamma',B,\Gamma'' \vdash \Delta',\Delta'' \\
+        \cline{1-1}
+        \Gamma',A \to B,\Gamma'' \vdash \Delta',\Delta''
+      \end{array}
+      \]
+  \end{description}
+\end{defn}
+
+Sakysime, kad sekvencija $F_{1},\dots,F_{n} \vdash G_{1},\dots,G_{m}$ yra
+išvedame skaičiavime G, jei galime sukonstruoti tokį medį (grafą),
+kurio visose viršūnėse yra sekvencijos, šaknyje yra pradinė sekvencija
+$F_{1},\dots,F_{n} \vdash G_{1},\dots,G_{m}$ ir kiekvienai viršūnei 
+teisinga: jei viršūnės $N$, kurioje 
+yra sekvencija S, vaike(-uose) $N_{1}$ (ir $N_{2}$) yra sekvencija(-os)
+$S_{1}$ (ir $S_{2}$), tai sekvencija S yra gauta iš sekvencijos(-jų)
+$S_{1}$ (ir $S_{2}$) pagal kažkurią taisyklę, ir kurio (medžio)
+visuose lapuose yra aksiomos.
+
+Sakysime, kad taisyklė yra \emph{apverčiama}, jei teisinga: jei taisyklės
+išvada išvedama, tai išvedamos ir visos taisyklės prielaidos.
+
+Visos sekvencinio skaičiavimo G taisyklės yra apverčiamos.
+
+Jei išvedant gautas lapas, kuriame nėra nei vienos formulės ir jis nėra
+aksioma, tai reiškia kad:
+\begin{enumerate}
+  \item sekvencija yra neišvedama, arba
+  \item skaičiavime buvo panaudota neapverčiama taisyklė.
+\end{enumerate}
+
+\begin{prop}
+  Formulė F yra tapačiai teisinga tada ir tik tada, kai sekvenciniame
+  skaičiavime G išvedama sekvencija $\vdash F$.
+\end{prop}
