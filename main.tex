@@ -1,0 +1,58 @@
+\documentclass{report}
+
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage[lithuanian]{babel}
+\usepackage{indentfirst}
+\usepackage[]{hyperref}
+\usepackage[]{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\hypersetup{pdfborder={0 0 0 0}}
+
+\defaultfontfeatures{Mapping=tex-text}
+
+% Apibrėžimai, teiginiai, pastabos.
+\swapnumbers
+
+\theoremstyle{plain}
+\newtheorem{prop}{Tg.}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Ap.}
+\newtheorem{exmp}{Pvz.}
+
+\theoremstyle{remark}
+\newtheorem*{note}{Pastaba}
+
+\newtheoremstyle{notation}{3pt}{3pt}{}{}{\itshape}{:}{.5em}{}
+\theoremstyle{notation}
+\newtheorem*{notation}{Žymėjimas}
+
+\title{%
+Adomo Birštūno
+Algoritmų teorijos paskaitų konspektas}
+
+\author{}
+
+\begin{document}
+
+\maketitle
+\bigskip
+
+\tableofcontents
+
+%\input{01.tex}                          % Algoritmo samprata.
+\input{02.tex}                          % Hilberto skaičiavimas.
+% \input{03.tex}                          % Sekvencinis skaičiavimas.
+% \input{04.tex}                          % Rezoliucijų metodas.
+% \input{05.tex}                          % Turingo mašinos.
+% \input{06.tex}                          % Baigtiniai automatai.
+% \input{07.tex}                          % Rekursyviosios funkcijos.
+% \input{08.tex}                          % Lambda skaičiavimas.
+% \input{09.tex}                          % Rekursyviai skaičios ir 
+%                                         % rekursyvios aibės.
+% \input{10.tex}                          % Universaliosios funkcijos.
+
+\end{document}
