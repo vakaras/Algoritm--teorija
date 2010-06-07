@@ -8,20 +8,28 @@
 \usepackage[]{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
+\usepackage{alltt}
+%\usepackage{listingsutf8}
 
 \hypersetup{pdfborder={0 0 0 0}}
 
 \defaultfontfeatures{Mapping=tex-text}
 
+\DeclareMathOperator{\at}{at}
+\DeclareMathOperator{\cod}{cod}
+
+\newcommand\dotminus{\mathop{\mbox{$-^{\hspace{-.5em}\cdot}\,\,$}}}
+
+
 % Apibrėžimai, teiginiai, pastabos.
 \swapnumbers
 
 \theoremstyle{plain}
-\newtheorem{prop}{Tg.}
+\newtheorem{prop}{Tg}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Ap.}
-\newtheorem{exmp}{Pvz.}
+\newtheorem{exmp}{Pvz}
 
 \theoremstyle{remark}
 \newtheorem*{note}{Pastaba}
@@ -31,28 +39,41 @@
 \newtheorem*{notation}{Žymėjimas}
 
 \title{%
-Adomo Birštūno
+Adomo Birštūno\\
 Algoritmų teorijos paskaitų konspektas}
 
 \author{}
 
 \begin{document}
 
+%\lstset{language=Python}
+
+
+%
+%
+%
+%
+%
+%
+%
+%
+
+
 \maketitle
 \bigskip
-
 \tableofcontents
-
-%\input{01.tex}                          % Algoritmo samprata.
+\input{01.tex}                          % Algoritmo samprata.
 \input{02.tex}                          % Hilberto skaičiavimas.
-% \input{03.tex}                          % Sekvencinis skaičiavimas.
-% \input{04.tex}                          % Rezoliucijų metodas.
-% \input{05.tex}                          % Turingo mašinos.
-% \input{06.tex}                          % Baigtiniai automatai.
-% \input{07.tex}                          % Rekursyviosios funkcijos.
-% \input{08.tex}                          % Lambda skaičiavimas.
-% \input{09.tex}                          % Rekursyviai skaičios ir 
+\input{03.tex}                          % Sekvencinis skaičiavimas.
+\input{04.tex}                          % Rezoliucijų metodas.
+\input{05.tex}                          % Turingo mašinos.
+% \input{07.tex}                          % Algoritmų sudėtingumas.
+% \input{08.tex}                          % Rekursyviosios funkcijos.
+% \input{09.tex}                          % Lambda skaičiavimas.
+% \input{10.tex}                          % Rekursyviai skaičios ir 
 %                                         % rekursyvios aibės.
-% \input{10.tex}                          % Universaliosios funkcijos.
+% \input{11.tex}                          % Universaliosios funkcijos.
+
+%\input{06.tex}                          % Baigtiniai automatai.
 
 \end{document}

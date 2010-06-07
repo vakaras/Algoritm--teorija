@@ -1,6 +1,6 @@
 \chapter{Disjunktų dedukcinė sistema. Rezoliucijų metodas}
 
-\begin{defn}[Disjuktas]
+\begin{defn}[Disjunktas]
   Literų disjunkcija. Litera yra kintamasis arba kintamasis su neigimu.
 \end{defn}
 
@@ -188,8 +188,8 @@ Jei iš aibės $S \vdash \Box$, tai aibė $S$ – prieštaringa.
                 $\nu(C_1 \lor p) = \nu(C_2 \lor p) = \dots =%
                 \nu(C_v \lor p) = 1$
 
-                Kadangi visi aibės $\at(S_{p}^{+}, S_{p}^{-})$ yra 
-                teisingi su interpretacija $\nu$, tai 
+                Kadangi visi aibės $\at(S_{p}^{+}, S_{p}^{-})$ disjunktai 
+                yra teisingi su interpretacija $\nu$, tai 
                 $\nu(C_i \lor D_1) = \dots = \nu(C_i \lor D_r) = 1$, bet
                 $\nu(C_i) = 0$, todėl 
                 $\nu(D_1) = \nu(D_2) = \dots = \nu(D_r) = 1 \implies %
@@ -205,8 +205,8 @@ Jei iš aibės $S \vdash \Box$, tai aibė $S$ – prieštaringa.
                   \nu(C_v \lor p) = 1$.
 
                 Apibrėžkime $\nu(p) = 0$, tada 
-                $\nu(D_{1} \lor \neg p) = \nu(D_{2} \lor \neg p) = \dots%
-                \nu(D_{r}) = 1$.
+                $\nu(D_{1} \lor \neg p) = \nu(D_{2} \lor \neg p) = \dots =%
+                \nu(D_{r} \lor \neg p) = 1$.
 
                 Gavome, kad su $\nu$ visi $S_{p}^{+}, S_{p}^{-}$ ir 
                 $S_{p}$ yra teisingi $\implies S$ – įvykdoma.
