@@ -141,10 +141,10 @@
 \end{defn}
 
 Sakysime, kad \emph{TM} sudėtingumas atminties atžvilgiu yra 
-$f(n)$, jei $\exists c : S_{M}(n) = cf(n), \forall n$.
+$f(n)$, jei $\exists c \,(c >0) : S_{M}(n) = cf(n), \forall n$.
 
 Sakysime, kad \emph{TM} sudėtingumas laiko atžvilgiu yra 
-$f(n)$, jei $\exists c : T_{M}(n) = cf(n), \forall n$.
+$f(n)$, jei $\exists c \,(c >0) : T_{M}(n) = cf(n), \forall n$.
 
 \begin{defn}[Sudėtingumo klasės]
   \hfill \\
@@ -290,15 +290,102 @@ Cantaro funkcijos rekurentinė išraiška:
 \end{prop}
 
 \begin{defn}[Baigtinumo problema]
-  Ar yra toks algoritmas, kuris $\mathbb{N}$ skaičių porai $(m,n)$ pasakytu
-  ar \emph{TM} su numeriu $m$ $(T_m)$ ir pradiniais duomenimis $n$ 
-  baigia darbą ar ne.
+  Ar yra toks algoritmas, kuris $\mathbb{N}$ skaičių porai $(m,n)$ 
+  pasakytų, ar \emph{TM} su numeriu $m$ $(T_m)$ ir pradiniais
+  duomenimis $n$ baigia darbą, ar ne.
 \end{defn}
 
 \begin{prop}
   Baigtinumo problema neišsprendžiama.
-
   \begin{proof}
-    TODO: 
+    (Prieštaros būdu.)
+
+    Tarkime, jog egzistuoja toks algoritmas, kuris porai $(m; n)$ pasako
+    ar \emph{TM} $T_{m}$ su duomenimis $n$ yra apibrėžta ar ne. Tada
+    egzistuoja tokia algoritmiškai apskaičiuojama funkcija:
+    \[
+    g(\alpha_{2}(x,y)) =%
+    \begin{cases}
+      1, & \text{jei } \varphi_{x}(y) < \infty, \text{kai apibrėžta} \\
+      0, & \text{jei } \varphi_{x}(y) = \infty. \text{kai neapibrėžta}
+    \end{cases}
+    \]
+    Tada yra \emph{TM}, kuri apskaičiuoja funkciją $g(z)$.
+    Tada yra \emph{TM}, kuri apskaičiuoja funkciją:
+    \[
+    f(x) =%
+    \begin{cases}
+      1, & \text{ jei } g(\alpha_{2}(x,x)) = 0, \\
+      \infty, & \text{ jei } g(\alpha_{2}(x,x)) = 1.
+    \end{cases}
+    \]
+    \emph{TM} skaičiuojančią $g(z)$ pažymėkime $M_{1}$.
+    \begin{align*}
+      M_{1}: & \: Q_{1} \text{ – būsenų aibė;} \\
+      & \: F_{1} \text{ – galutinių būsenų aibė.}
+    \end{align*}
+    Sukonstruokime \emph{TM} $M_{2}$ skaičiuojančią $f(x)$:
+
+    Kai $M_{1}$ baigia darbą, tai galimi du variantai:
+    \begin{enumerate}
+      \item \emph{TM} yra galutinėje būsenoje $q_{F} \in F_{1}$ ir 
+        juostoje yra vienintelis simbolis $1$, į kurį ir žiūri 
+        skaitymo galvutė.
+      \item \emph{TM} yra galutinėje būsenoje $q_{F} \in F_{1}$ ir 
+        juostoje yra vienintelis simbolis $0$, į kurį ir žiūri 
+        skaitymo galvutė.
+    \end{enumerate}
+    \emph{TM} $M_{2}$ tokia pati kaip ir $M_{1}$, tik 
+    $Q_{2} = Q_{1} \cup \{ q^{*} \}$, $F_{2} = \{ q^{*} \}$, 
+    $q_{F}$ – nėra galutinė būsena ir:
+    \begin{align*}
+      \delta(q_{F},0) & = (q^{*}, 1, N) \to \varphi(x)\text{ – apibrėžta;}\\
+      \delta(q_{F},1) & = (q_{F}, 1, N) \to \varphi(x)\text{ – neapibrėžta.}
+    \end{align*}
+
+    Kadangi yra \emph{TM} ($M_{2}$), kuri apskaičiuoja funkciją $f(x)$,
+    tai yra toks numeris $l$, kad $T_{l} = M_{2}$. $T_{l}$ apskaičiuoja
+    $\varphi_{l}(x)$, todėl $f(x) = \varphi_{l}(x)$. Panagrinėkime 
+    $\varphi_{l}(l)$:
+    \begin{enumerate}
+      \item Jei $\varphi_{l}(l) < \infty$, tai 
+        $g(\alpha_{2}(l,l)) = 1 \implies f(l) = \infty \implies%
+        \varphi_{l}(l) = \infty$;
+      \item Jei $\varphi_{l}(l) = \infty$, tai 
+        $g(\alpha_{2}(l,l)) = 0 \implies f(l) = 1 \implies%
+        \varphi_{l}(l) < \infty$.
+    \end{enumerate}
+    Gauname prieštarą, todėl neegzistuoja toks algoritmas, kuris 
+    porai $(m;n)$ pasakytu ar \emph{TM} $T_{m}$ su pradiniais duomenis
+    $n$ baigia darbą ar ne.
   \end{proof}
 \end{prop}
+
+\begin{defn}[Aibės charakteringoji funkcija]
+  Aibės A charakteringoji funkcija yra:
+  \[
+  \chi _{A}(x) =%
+  \begin{cases}
+    1, & \text{ jei } x \in A \\
+    0, & \text{ jei } x \not \in A
+  \end{cases}
+  \]
+\end{defn}
+
+\begin{defn}[Rekursyvi aibė]
+  Sakysime, kad aibė yra rekursyvi, jei jos charakteringoji funkcija yra
+  visur apibrėžta rekursyvi funkcija.
+\end{defn}
+
+\begin{note}
+  (Rice teorema.) Jei aibė $X$ yra vieno argumento dalinai rekursyvių
+  funkcijų aibė ir nesutampa nei su $\emptyset$, nei su visa vieno
+  argumento dalinai rekursyvių funkcijų aibe (yra poaibis), tai 
+  aibė $A = (x : \varphi_{x} \in X)$ nėra rekursyvi.
+  \begin{exmp}
+    $X$ – funkcijų, kurios visada grąžina $1$ aibė: $X = \{ f(x) = 1 \}$.
+    Tada $A = \{ x : \varphi_{x} \in X \}$ nėra rekursyvi $\implies$
+    nėra algoritmo, kuris pasakytu ar $x \in A$.
+  \end{exmp}
+\end{note}
+
