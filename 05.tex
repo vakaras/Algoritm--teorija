@@ -58,14 +58,14 @@
 \section{Baigtiniai automatai}
 
 \begin{defn}[Baigtinis automatas]
-  Vienajuostė determinuota Turiningo mašina, kurios perėjimu funkcija
-  yra $\delta(q_i, a) = (q_j, a, D)$ ir kuri (\emph{TM}), baigia darbą
-  tada, kai pasiekia pirmąją tuščia ląstelę.
+  Vienajuostė determinuota Turiningo mašina, kurios perėjimų funkcija
+  yra $\delta(q_i, a) = (q_j, a, D)$ ir kuri (\emph{TM}) baigia darbą
+  tada, kai pasiekia pirmąją tuščią ląstelę.
 \end{defn}
 
 \begin{defn}[Baigtinio automato kalba]
-  Tokia žodžių, su kuriais automatas baigia darbą vienoje iš galutinių 
-  būsenų, aibė.
+  Aibė žodžių, su kuriais automatas baigia darbą vienoje iš galutinių 
+  būsenų.
 \end{defn}
 
 \begin{prop}
@@ -184,4 +184,121 @@ $f(n)$, jei $\exists c : T_{M}(n) = cf(n), \forall n$.
   $L \subseteq NL \subseteq P \subseteq NP %
     \subseteq PSPACE \subseteq EXP$
   ir $NL \not = PSPACE$ ir $P \not = EXP$.
+\end{prop}
+
+\section{Porų numeravimas}
+
+\[
+\overbrace{\underbrace{(0;0)}_{0}}^{\Sigma = 0},%
+\overbrace{\underbrace{(0;1)}_{1},\underbrace{(1;0)}_{2}}^{\Sigma = 1},%
+\overbrace{\underbrace{(0;2)}_{3},\underbrace{(1;1)}_{4},
+  \underbrace{(2;0)}_{5}}^{\Sigma = 2},
+  \underbrace{(0;3)}_{6},\underbrace{(1;2)}_{7},\dotsc
+\]
+
+\begin{defn}[Poros numeris \emph{Cantaro} numeracijoje]
+  Funkcija $\alpha _{2}(x, y)$. Kairiojo nario funkcija yra 
+  $\pi_{2}^{1}(n)$, o dešiniojo $\pi_{2}^{2}(n)$, kur $n$ porai priskirtas
+  numeris.
+\end{defn}
+
+\begin{prop}
+  Poros $(x; y)$ numeris:
+  \[
+  \alpha _{2} (x, y) = \frac{(x+y)^{2} + 3x + y}{2}
+  \]
+  \begin{note}
+    \[
+    \pi^{1}_{2} (n) = n \dotminus \frac{1}{2}%
+    \left[\frac{[\sqrt{8n + 1}]+1}{2}\right]%
+    \left[ [\sqrt{8n + 1}] - 1 \right]
+    \]
+  \end{note}
+\end{prop}
+
+\begin{defn}[Cantaro funkcijos]
+  $\alpha_{n}(x_1,x_2,\dotsc,x_n)$ – rinkinio $x_1,x_2,\dotsc,x_n$ numeris
+  Cataro numeracijoje.
+  $\pi^{i}_{n} (K)$ – $K$-ojo rinkinio iš $n$ elementų $i$-asis narys.
+\end{defn}
+
+Cantaro funkcijos rekurentinė išraiška:
+\[
+\begin{cases}
+   \alpha _{2} (x,y) = \frac{(x+y)^{2} + 3y + x}{2} \\
+   \alpha _{n} (x_1,x_2,\dotsc,x_n) =%
+   \alpha _{2} (x_1, \alpha _{n-1} (x_2,x_3,\dotsc,x_n))
+\end{cases}
+\]
+
+\begin{note}
+  \begin{alltt}
+\$ python3
+>>> def \(\alpha\)(*numbers):
+...   if len(numbers) == 2:
+...     x, y = numbers
+...     return ((x+y)**2 + 3*x + y)/2
+...   elif len(numbers) > 2:
+...     return \(\alpha\)(numbers[0], \(\alpha\)(*numbers[1:]))
+...   else:
+...     raise Exception('Netinkamas argumentų kiekis!')
+>>> \(\alpha\)(1,0,1,2)
+436.0
+  \end{alltt}
+\end{note}
+
+\begin{exmp}
+  \begin{align*}
+    f(x,y) &= 3x + y \\
+    g(z) &= 3 \pi^{1}_{2}(z) + \pi^{2}_{2}(z) \\
+    f(x,y) &= g(\alpha_{2}(x,y)) = 3x + y
+  \end{align*}
+\end{exmp}
+
+\section{Baigtinumo problema}
+
+\begin{defn}[Standartinė \emph{TM}]
+  Tokia \emph{TM}, kuri:
+  \begin{enumerate}
+    \item vienajuostė determinuota;
+    \item $\Sigma = \left\{ 0, 1, b \right\}$;
+    \item kai baigia darbą būdama galutinėje būsenoje, juostoje yra tik
+      atsakymas, ir skaitymo galvutė žiūri į pirmąjį iš kairės netuščią
+      simbolį;
+    \item $|F| = 1$.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  Kiekvienai \emph{TM} egzistuoja standartinė \emph{TM}, kuri skaičiuoja
+  tą pačią funkciją.
+\end{prop}
+
+\begin{prop}
+  Standartinių \emph{TM} aibė yra skaiti.
+  \begin{note}
+    Visas standartines \emph{TM} galima sunumeruoti:
+    \[
+    \begin{array}{r c c c c c l}
+     \text{Turingo mašina: } & T_0, & T_1, & T_2, & T_3, & T_4, & \dotsc \\
+     \text{Jos skaičiuojama funkcija: } & \varphi_0(x), & \varphi_1(x), &%
+       \varphi_2(x), & \varphi_3(x), & \varphi_4(x), & \dotsc
+      
+    \end{array}
+    \]
+  \end{note}
+\end{prop}
+
+\begin{defn}[Baigtinumo problema]
+  Ar yra toks algoritmas, kuris $\mathbb{N}$ skaičių porai $(m,n)$ pasakytu
+  ar \emph{TM} su numeriu $m$ $(T_m)$ ir pradiniais duomenimis $n$ 
+  baigia darbą ar ne.
+\end{defn}
+
+\begin{prop}
+  Baigtinumo problema neišsprendžiama.
+
+  \begin{proof}
+    TODO: 
+  \end{proof}
 \end{prop}
