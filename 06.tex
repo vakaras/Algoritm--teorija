@@ -1,0 +1,120 @@
+\chapter{$\lambda$-skaičiavimas}
+
+\begin{defn}[$\lambda$–skaičiavimo termas]
+  \begin{itemize}
+    \item Jei $u$ – kintamasis, tai $u$ yra termas.
+    \item Jei $E_{1}$ ir $E_{2}$ yra termai, tai ir $E_{1}E_{2}$ yra 
+      termas.
+    \item Jei $E$ yra termas, o $x$ – kintamasis, tai ir 
+      $\lambda x.E$ irgi yra termas.
+  \end{itemize}
+  \begin{note}
+    Kintamuosius žymime mažosiomis raidėmis.
+  \end{note}
+  \begin{note}
+    Skliaustai būtini: $(xy)z \not = x(yz)$!
+  \end{note}
+\end{defn}
+
+Kintamojo įeitis terme, yra jo pasitaikymas jame.
+\begin{exmp}
+  Jei turime termą:
+  \[
+  (\lambda x.((yz)(\lambda z.((zx)y)))(x(\lambda y.(xy)))),
+  \]
+  tai:
+  \[
+  (\lambda \underbrace{x}_{1}.((yz)
+  (\lambda z.((z\underbrace{x}_{2})y)))
+  (\underbrace{x}_{3}(\lambda y.(\underbrace{x}_{4}y)))),
+  \]
+  sunumeruotos yra kintamojo $x$ įeitys.
+\end{exmp}
+
+Kintamojo įeitis $x$ yra suvaržyta, jei patenka į $\lambda x.$ veikimo
+sritį. Kitaip $x$ įeitis yra laisva.
+\begin{note}
+  $\lambda x.E$ terme $\lambda x.$ veikimo sritis yra termas $E$.
+\end{note}
+\begin{note}
+  $\lambda x.xu = (\lambda x.x)u \not = \lambda x.(xu)$ 
+\end{note}
+
+Termai $E_{1}$ ir $E_{2}$ yra $\lambda$-ekvivalentūs, jei $E_{2}$ yra
+gautas iš $E_{1}$, jame visas laisvas kažkurio kintamojo $x$ įeitis
+pakeitus nauju kintamuoju.
+
+Termas $\lambda x.E_{1}$ yra $\lambda$-ekvivalentus termui 
+$\lambda x.E_{2}$, jei termas $E_{2}$ yra gautas iš termo $E_{1}$, jame
+visas  laisvas $x$ įeitis pakeitus nauju kintamuoju $y$.
+
+\begin{defn}[Redeksas ir jo santrauka]
+  Termas pavidalo $(\lambda x.E)Y$, kur $E$ ir $Y$ yra termai, vadinamas
+  redeksu. Redekso $(\lambda x.E)Y$ santrauka yra termas $E[^y/_x]$
+  – termas $E$, kuriame visos laisvos kintamojo $x$ įeitys yra pakeistos
+  termu $Y$.
+  \begin{exmp}
+    Redekso $(\lambda x.\underbrace{(ux))}_{E}\underbrace{(zz)}_{Y}$
+    santrauka yra termas $u(zz)$.
+  \end{exmp}
+  \begin{exmp}
+    Redekso $(\lambda x.((ux)(\lambda x.(xy))))(zz)$ santrauka yra 
+    termas $(u(zz))(\lambda x.(xy))$.
+  \end{exmp}
+\end{defn}
+
+\begin{defn}[$\beta$-redukcija]
+  $\lambda$-skaičiavimo termo $E$ $\beta$-redukcija vadinama termų seka
+  $E_1 \triangleright E_2 \triangleright E_3 \triangleright %
+  E_4 \triangleright \cdots \triangleright E_k \triangleright$, kur
+  $E_1 = E$, ir $E_{i+1}$ yra gautas iš $E_{i}$ jame pirmąjį iš kairės 
+  redeksą pakeitus jo santrauka.
+\end{defn}
+
+\begin{defn}[Normalinis termas]
+  Termas, kuriame nėra redeksų. Termas yra nenormalizuojamas, jeigu jo 
+  $\beta$-redukcija yra begalinė.
+\end{defn}
+
+\begin{defn}
+  $\lambda$-skaičiavimo loginės konstantos yra 
+  $\underbrace{\lambda x.\lambda y.y}_{klaidinga}$ ir 
+  $\underbrace{\lambda x.\lambda y.x}_{teisinga}$.
+  \begin{notation}
+    $\lambda x.\lambda y.y = 0$ ir $\lambda x.\lambda y.x = 1$.
+  \end{notation}
+\end{defn}
+
+\begin{defn}
+  $\lambda$-skaičiavimo natūrinis skaičius $k$ yra 
+  $\lambda f.\lambda x.(f^{k} x)$, kur
+  $f^{k} x = \underbrace{f(f(\dots f(f(}_{\text{k kartų}} x ))\dots))$.
+  \begin{notation}
+    Skaičius 2 žymimas 
+    $\underline{2} = \lambda f.\lambda x(f^{2} x) =%
+    \lambda f.\lambda x(f(fx))$
+  \end{notation}
+\end{defn}
+
+\begin{exmp}
+  $(x1)\underline{1} = (x(\lambda x.\lambda y.x))(\lambda f.\lambda x.(fx))$
+\end{exmp}
+
+\begin{defn}
+  Sakysime, kad termas $E$ apibrėžia dalinę funkciją 
+  $f(x_1,x_2,\dotsc,x_n)$, jei:
+  \begin{itemize}
+    \item jei $f(K_1,K_2,\dotsc,K_n) = K$, tai termas 
+      $(\dots((EK_1)K_2)\dots)K_n$ redukuojamas ($\beta$-redukcijoje) į
+      termą $K$;
+    \item jei $f(K_1,K_2,\dotsc,K_n) = \infty$, tai termas 
+      $(\dots((EK_1)K_2)\dots)K_n$ yra neredukuojamas.
+  \end{itemize}
+\end{defn}
+
+\begin{prop}
+  Kiekvienai algoritmiškai apskaičiuojamai funkcijai egzistuoja ją 
+  apibrėžiantis termas.
+\end{prop}
+
+
