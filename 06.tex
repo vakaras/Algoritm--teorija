@@ -1,9 +1,10 @@
 \chapter{$\lambda$-skaičiavimas}
 
 \begin{defn}[$\lambda$–skaičiavimo termas]
+  \hfill \\
   \begin{itemize}
     \item Jei $u$ – kintamasis, tai $u$ yra termas.
-    \item Jei $E_{1}$ ir $E_{2}$ yra termai, tai ir $E_{1}E_{2}$ yra 
+    \item Jei $E_{1}$ ir $E_{2}$ yra termai, tai ir $(E_{1}E_{2})$ yra 
       termas.
     \item Jei $E$ yra termas, o $x$ – kintamasis, tai ir 
       $\lambda x.E$ irgi yra termas.
@@ -16,7 +17,7 @@
   \end{note}
 \end{defn}
 
-Kintamojo įeitis terme, yra jo pasitaikymas jame.
+Kintamojo įeitis terme yra jo pasitaikymas jame.
 \begin{exmp}
   Jei turime termą:
   \[
@@ -40,17 +41,17 @@ sritį. Kitaip $x$ įeitis yra laisva.
   $\lambda x.xu = (\lambda x.x)u \not = \lambda x.(xu)$ 
 \end{note}
 
-Termai $E_{1}$ ir $E_{2}$ yra $\lambda$-ekvivalentūs, jei $E_{2}$ yra
+Termai $E_{1}$ ir $E_{2}$ yra $\alpha$-ekvivalentūs, jei $E_{2}$ yra
 gautas iš $E_{1}$, jame visas laisvas kažkurio kintamojo $x$ įeitis
 pakeitus nauju kintamuoju.
 
-Termas $\lambda x.E_{1}$ yra $\lambda$-ekvivalentus termui 
-$\lambda x.E_{2}$, jei termas $E_{2}$ yra gautas iš termo $E_{1}$, jame
+Termas $\lambda x.E_{1}$ yra $\alpha$-ekvivalentus termui 
+$\lambda y.E_{2}$, jei termas $E_{2}$ yra gautas iš termo $E_{1}$, jame
 visas  laisvas $x$ įeitis pakeitus nauju kintamuoju $y$.
 
 \begin{defn}[Redeksas ir jo santrauka]
-  Termas pavidalo $(\lambda x.E)Y$, kur $E$ ir $Y$ yra termai, vadinamas
-  redeksu. Redekso $(\lambda x.E)Y$ santrauka yra termas $E[^y/_x]$
+  Termas pavidalo $(\lambda x.E)Y$, kur $E$ ir $Y$ yr(a termai, vadinamas
+  redeksu. Redekso $(\lambda x.E)Y$ santrauka yra termas $E[^Y/_x]$
   – termas $E$, kuriame visos laisvos kintamojo $x$ įeitys yra pakeistos
   termu $Y$.
   \begin{exmp}
