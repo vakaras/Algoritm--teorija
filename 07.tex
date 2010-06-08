@@ -1,0 +1,344 @@
+\chapter{Primityviai rekursyvios funkcijos}
+
+Kompozicijos operatorius: sakysime, kad funkcija
+$f(x_1,x_2,\dotsc,x_n)$ yra gauta iš funkcijų 
+$g_{i}(x_1,x_2,\dotsc,x_n)\,(i=1,2,3,\dotsc,m)$ ir funkcijos
+$h(x_1,x_2,\dotsc,x_m)$, jei 
+$f(x_1,x_2,\dotsc,x_n) = %
+h(g_{1}(x_1,\dotsc,x_n),\dotsc,g_{m}(x_1,\dotsc,x_n))$.
+
+\begin{defn}
+  Sakysime, jog funkcija $f(x_1,x_2,\dotsc,x_n)$ yra gauta pagal 
+  primityviosios rekursijos operatorių iš 
+  $g(x_1,x_2,\dotsc,x_{n-1})$ ir 
+  $h(x_1,x_2,\dotsc,x_n,x_{n+1})$, jei teisinga:
+  \begin{align*}
+    f(x_1,x_2,\dotsc,x_{n-1},0) &= g(x_1,x_2,\dotsc,x_{n-1}) \text{ ir} \\
+    f(x_1,x_2,\dotsc,x_{n-1},y+1) &= %
+      h(x_1,x_2,\dotsc,x_{n-1},y,f(x_1,x_2,\dotsc,x_{n-1},y))
+  \end{align*}
+\end{defn}
+
+\begin{defn}[Primityviai rekursyvių funkcijų aibė (\emph{PR})]
+  Primityviai rekursyvių funkcijų aibė sutampa su aibe, kuriai
+  priklauso bazinės funkcijos: 
+  $0, s(x) = x+1, pr_{m}^{i}(x_1,x_2,\dotsc,x_m) = x_{i}$ ir
+  kuri yra uždara kompozicijos ir primityviosios rekursijos
+  operatorių atžvilgiu.
+\end{defn}
+
+Visos \emph{PR} funkcijos yra apibrėžtos su visais natūraliaisiais 
+skaičiais.
+
+Sakysime, kad $\mathbb{N}$ skaičių poaibis yra primityviai rekursyvus,
+jei jo charakteringoji funkcija priklauso \emph{PR}.
+
+\begin{prop}
+  Cantaro funkcijos $\alpha_{n}(x_1,x_2,\dotsc,x_n)$ ir 
+  $\pi^{i}_{n}(K)$ yra primityviai rekursyvios.
+\end{prop}
+
+\begin{prop}
+  Jei funkcija $g(x_1,x_2,\dotsc,x_n) \in \PR$, tai ir 
+  funkcija
+  $f(x_1,x_2,\dotsc,x_n) = \sum _{i=0} ^{x_n} g(x_1,x_2,\dotsc,x_n)%
+  \in \PR$
+\end{prop}
+
+\begin{prop}
+  Jei $f_{i}(x_1,x_2,\dotsc,x_n) \in \PR$ ir 
+  $\alpha_{j}(x_1,x_2,\dotsc,x_n) \in \PR$ 
+  $(i=1,2,\dotsc,s,s+1;\,j=1,2,\dotsc,s)$, tada ir funkcija:
+  \[
+  h(x_1,x_2,\dotsc,x_n) =%
+  \begin{cases}
+    f_{1}(x_1,x_2,\dotsc,x_n), 
+      &\text{ jei } \alpha_{1}(x_1,x_2,\dotsc,x_n)=0,\\
+    f_{2}(x_1,x_2,\dotsc,x_n), 
+      &\text{ jei } \alpha_{2}(x_1,x_2,\dotsc,x_n)=0,\\
+    \cdots & {} \\
+    f_{s}(x_1,x_2,\dotsc,x_n), 
+      &\text{ jei } \alpha_{s}(x_1,x_2,\dotsc,x_n)=0,\\
+    f_{s+1}(x_1,x_2,\dotsc,x_n), 
+      &\text{ kitu atveju }
+  \end{cases}
+  \]
+  yra primityviai rekursyvi.
+  \begin{note}
+    Su bet kuriuo rinkiniu $(x_1,x_2,\dotsc,x_n)$ ne daugiau nei viena
+    $\alpha_{i}(x_1,x_2,\dotsc,x_n)$ ($i=1,2,\dotsc,s$) gali būti lygi 0.
+  \end{note}
+\end{prop}
+
+\begin{defn}[Iteracijos operatorius]
+  Sakysime, kad funkcija $f(x)$ yra gauta pagal iteracijos operatorių iš
+  funkcijos $g(x)$, jei teisinga:
+  \[
+  \begin{cases}
+    f(0) &= 0 \\
+    f(y+1) &= g(f(y))
+  \end{cases}
+  \]
+\end{defn}
+
+\begin{defn}
+  Visų vieno argumento $\PR$ funkcijų aibė sutampa su aibe, kuriai
+  priklauso funkcijos $s(x) = x+1$, 
+  $q(x) = x \dotminus \left[ \sqrt{x} \right]^2$ ir kuri yra 
+  uždara kompozicijos, sudėties ir iteracijos operatorių atžvilgiu.
+\end{defn}
+
+\section{Dalinai rekursyvios funkcijos}
+
+\begin{defn}[Minimizacijos operatorius]
+  Sakysime, kad funkcija $f(x_1,x_2,\dotsc,x_n)$ gauta pagal minimizacijos
+  operatorių iš funkcijos $g(x_1,x_2,\dotsc,x_n)$, jei:
+  \[
+  f(x_1,x_2,\dotsc,x_n) = \mu_{y}(g(x_1,x_2,\dotsc,x_{n-1},y) = x_n),
+  \]
+  tai yra pati mažiausia natūrali $y$ reikšmė, kuriai teisinga
+  $g(x_1,x_2,\dotsc,x_{n-1},y) = x_n$.
+
+  \begin{exmp}
+    $f(x,y) = \mu_{z}((s(z)\dotminus x)\cdot \sg(y \dotminus z)=x)$
+  \end{exmp}
+\end{defn}
+
+\begin{defn}[Dalinai rekursyvių funkcijų aibė (DR)]
+  Dalinai rekursyvių funkcijų aibė sutampa su aibe, kuriai priklauso 
+  bazinės funkcijos $0, s(x) = x+1, pr_{n}^{i}(x_1,x_2,\dotsc,x_n) = x_{i}$
+  ir kuri yra uždara kompozicijos, primityviosios rekursijos ir
+  minimizacijos operatorių atžvilgiu.
+
+  \begin{note}
+    Jei $f(x_1,x_2,\dotsc,x_n) = \mu_{y}(g(x_1,x_2,\dotsc,x_{n-1},y)=x_n)$,
+    tai $f(x_1,x_2,\dotsc,x_n)$ reikšmė apskaičiuojama remiantis tokiu
+    algoritmu:
+    \[
+    \verb|for (y = 0; |g(x_1,x_2,\dotsc,x_{n-1},y) %
+      \neq x_n\verb|; y++);|      
+    \]
+    \[
+    f(x_1,x_2,\dotsc,x_n) =%
+    \begin{cases}
+      y, & \text{jei pavyko rasti $y$ arba} \\
+      \infty, & \text{jei $y$ neegzistuoja, arba skaičiuojant buvo %
+        gauta neapibrėžtis.}
+    \end{cases}
+    \]
+  \end{note}
+\end{defn}
+
+\begin{defn}[Bendrųjų reukursyviųjų funkcijų aibė ($\BR$)]
+  Aibė sudaryta iš visų $\DR$ funkcijų, kurios yra apibrėžtos su visais
+  natūraliaisiais argumentais.
+\end{defn}
+
+\begin{prop}
+  $\PR \subseteq \BR \subseteq \DR$
+\end{prop}
+
+\begin{note}
+  Žinomos primityviai rekursyvios funkcijos:
+  \begin{itemize}
+    \item bazinės funkcijos:
+      \begin{align*}
+        & 0,\\
+        & s(x) = x + 1, \\
+        & pr^{i}_{n}(x_1,x_2,\dotsc,x_n) = x_i;
+      \end{align*}
+    \item vieno argumento $\PR$ funkcijų bazinės funkcijos:
+      \begin{align*}
+        s(x) &= x + 1, \\
+        q(x) &= x \dotminus \left[ \sqrt{x} \right]^{2};
+      \end{align*}
+    \item kitos žinomos $\PR$ funkcijos:
+      \begin{align*}
+        \sg(x) &= %
+        \begin{cases}
+          1, & \text{ jei } x > 0 \\
+          0, & \text{ jei } x = 0
+        \end{cases}, \\
+        \sgi(x) &= %
+        \begin{cases}
+          0, & \text{ jei } x > 0 \\
+          1, & \text{ jei } x = 0
+        \end{cases}, \\
+        x \dotminus y &=%
+        \begin{cases}
+          x - y, & \text{ jei } x > y \\
+          0, & \text{ kit atveju}
+        \end{cases}, \\
+        x + y,& \\
+        x \cdot y, & \\
+        |x - y|, & \\
+        [x / y]. & 
+      \end{align*}
+  \end{itemize}
+\end{note}
+
+\begin{note}
+  Žinomos dalinai rekursyvios funkcijos:
+  \begin{itemize}
+    \item dalinis skirtumas:
+      \[
+      x - y =%
+      \begin{cases}
+        x - y, & \text{ jei } x \geq y \\
+        \infty, & \text{ kitu atveju}
+      \end{cases},
+      \]
+    \item dalinė dalyba:
+      \[
+      x / y =%
+      \begin{cases}
+        x / y, & \text{ jei $x$ dalosi iš $y$ }\\
+        \infty, & \text{ kitu atveju}
+      \end{cases},
+      \]
+    \item dalinė šaknis:
+      \[
+      \sqrt{x} =%
+      \begin{cases}
+        \sqrt{x}, & \text{ jei $x$ yra natūralaus skaičiaus kvadratas} \\
+        \infty, & \text{ kitu atveju}
+      \end{cases}.
+      \]
+  \end{itemize}
+\end{note}
+
+\section{Reukursyviai skaičiosios aibės}
+
+\begin{defn}[Rekursyviai skaiti aibė]
+  \label{rsadr}
+  Aibė $A$ yra rekursyviai skaiti, jei sutampa su kažkurios $\DR$ funkcijos
+  apibrėžimo sritimi.
+\end{defn}
+
+\begin{defn}[Rekursyviai skaiti aibė]
+  \label{rsapr}
+  Netuščia aibė $A$ yra rekursyviai skaiti, jei sutampa su kažkurios
+  $\PR$ funkcijos reikšmių sritimi.
+\end{defn}
+
+\begin{defn}[Rekursyviai skaiti aibė]
+  \label{rsalg}
+  Aibė $A$ yra rekursyviai skaiti, jei $\exists$ tokia $\PR$ funkcija
+  $f(a,x)$, kad lygtis $f(a, x) = 0$ turi sprendinį tada ir tik tada, kai
+  $a \in A$.
+\end{defn}
+
+\begin{prop}
+  Visi trys (\ref{rsadr}, \ref{rsapr} ir \ref{rsalg}) rekursyvios aibės
+  apibrėžimai yra ekvivalentūs netuščios aibės atžvilgiu.
+  \begin{proof}
+    (Dalinis \ref{rsapr} $\implies$ \ref{rsadr}, 
+    \ref{rsapr} $\implies$ \ref{rsalg} ir 
+    \ref{rsalg} $\implies$ \ref{rsapr})
+
+    \begin{description}
+      \item[(\ref{rsapr} $\implies$ \ref{rsadr})]
+        Tarkime, kad aibė $A$ yra rekursyviai skaiti, nes $\exists \PR$
+        funkcija $h(x)$ tokia, kad $A$ sutampa su $h$ reikšmių 
+        sritimi (\ref{rsapr} ap.):
+        \[
+        A = \left\{ h(0), h(1), h(2), h(3), \dotsc \right\}.
+        \]
+        Imkime funkciją $f(x) = \mu_{y}(h(y) = x)$. Ji yra dalinai 
+        rekursyvi, nes yra gauta pagal minimizacijos operatorių iš
+        dalinai rekursyvios funkcijos $h (\in \PR \subseteq \DR)$.
+        \begin{itemize}
+          \item Jei $a \in A$, tai $\exists i(i \in \mathbb{N})$, kad
+            $h(i) = a \implies f(a) = \mu_{y}(h(y) = a) < \infty$ 
+            – apibrėžta.
+          \item Jei $a \not \in A$, tai 
+            $\forall j (j \in \mathbb{N}): \, h(j) \neq a \implies%
+            f(a) = \mu_{y}(h(y) = a) = \infty$ – neapibrėžta.
+        \end{itemize}
+        Aibė $A$ sutampa su funkcijos $f(x)$ apibrėžimo sritimi ir
+        $f(x) \in \DR \implies$ \ref{rsadr} ap.
+      \item[(\ref{rsapr} $\implies$ \ref{rsalg})] 
+        Tarkime, jog aibė $A$ sutampa su $\PR$ funkcijos
+        $h(x)$ apibrėžimo sritimi (\ref{rsapr} ap.). Tai yra:
+        \[
+        A = \left\{ h(0),h(1),h(2),h(3),\dotsc \right\}.
+        \]
+        Imkime funkciją $f(a,x) = |h(x)-a|$. $f(x) \in \PR$, nes gauta
+        iš $\PR$ funkcijų pritaikius kompozicijos operatorių. Lygtis
+        $f(a,x) = 0$ yra $|h(x) - a| = 0$.
+        \begin{itemize}
+          \item Jei $a \in A$, tai $\exists$ toks $i$, kad 
+            $h(i)=a \implies |h(x) - a| = 0$, turi sprendinį $x = i$.
+          \item Jei $a \not \in A$, tai 
+            $\forall j (j \in \mathbb{N}): h(j) \neq a \implies %
+            |h(x) - a| > 0$ – lygtis neturi sprendinių.
+        \end{itemize}
+        Lygtis $f(a,x)=0$, turi sprendinį tada ir tik tada, 
+        kai $a \in A \implies$ \ref{rsalg} ap.
+      \item[(\ref{rsalg} $\implies$ \ref{rsapr})]
+        Tarkime, jog $a \in A$ tada ir tik tada, kai lygtis 
+        $f(a,x) = 0$, kur $f(a,x) \in \PR$, turi sprendinį.
+        Imkime funkciją
+        \[
+        h(t)=\pi^{1}_{2}(t) \cdot \sgi(f(\pi^{1}_{2}(t),\pi^{2}_{2}(t)))%
+        + d \cdot \sg(f(\pi^{1}_{2}(t), \pi_{2}^{2}(t))), 
+        \]
+        kur $d$ – bet koks aibės $A$ elementas. $h(t) \in \PR$, nes gauta
+        iš žinomų $\PR$ funkcijų pritaikius kompozicijos operatorių.
+        Parodysime, kad $h(t)$ reikšmių sritis sutampa su aibe $A$:
+        \begin{itemize}
+          \item Jei $a \in A$, tai lygtis $f(a,x) = 0$ turi sprendinį
+            $x = u$. Pažymėkime $t = \alpha_{2}(a, u)$. Tada
+            \begin{align*}
+              h(t) &= h(\alpha_{2}(a, u)) \\
+              &= a \cdot \sgi(\underbrace{f(a, u)}_{= 0}) + %
+                d \cdot \sg(\underbrace{f(a, u)}_{= 0}) \\
+              &= a \cdot \sgi(0) + d \cdot \sg(0) \\
+              &= a
+            \end{align*}
+          \item Jei $t = \alpha_{2}(a, v)$, kad $f(a, v) \neq 0$, tai
+            \begin{align*}
+              h(t) &= h(\alpha_{2}(a, v)) \\
+              &= a \cdot \sgi(\underbrace{f(a, v)}_{> 0}) + %
+                d \cdot \sg(\underbrace{f(a, v)}_{> 0}) \\
+              &= a \cdot 0 + d \cdot 1 \\
+              &= d
+            \end{align*}
+        \end{itemize}
+        Gavome, kad $h(t)$ su bet kokiu $t$ įgyja reikšmę $\in A$ ir 
+        $h(t)$ įgyja visas reikšmes iš aibės $A$. Kadangi 
+        $h(t)$ reikšmių sritis yra aibė $A$ ir $h(t) \in \PR$, tai
+        gavome \ref{rsapr} apibrėžimą.
+    \end{description}
+  \end{proof}
+\end{prop}
+
+\begin{note}
+  Rekursyvių ir rekursyviai skaičių aibių skirtumas:
+  \begin{itemize}
+    \item $A$ – rekursyvi, jei 
+      \[
+      \exists \, \chi_{A}(a) =%
+      \begin{cases}
+        1, & \text{ jei } a \in A \\
+        0, & \text{ jei } a \not \in A
+      \end{cases}%
+      \in \BR
+      \]
+      (Funkcija visur apibrėžta.)
+    \item $A$ – rekursyviai skaiti, jei
+      \[
+      \exists \, \chi_{A}(a) =%
+      \begin{cases}
+        1, & \text{ jei } a \in A \\
+        \infty, & \text{ jei } a \not \in A
+      \end{cases}%
+      \in \DR
+      \]
+      (Funkcija ne visur apibrėžta.)
+  \end{itemize}
+\end{note}
+
+\subsection{Rekursyviai skaičių aibių savybės}
+
+TODO
