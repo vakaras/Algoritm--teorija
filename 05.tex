@@ -102,10 +102,10 @@
   \begin{enumerate}
     \item konkatenacija $:= \{ uv : u \in A_1, v \in A_2 \}$, kur 
       $A_1$, $A_2$ – automato kalbos;
-    \item iteracija $:=\{u_1 u_2 \dots u_k : u_i \in A_i, i=1,2,\dotsc,k\}$,
-      kur $A_1$ – automato kalba;
+    \item iteracija $:=\{u_1 u_2 \dots u_k : u_i \in A, i=1,2,\dotsc,k\}$,
+      kur $A$ – automato kalba;
     \item atspindys $:=\{a_1 a_2 \dots a_n : a_n a_{n-1} \dots a_1 %
-      \in A_1 \}$, kur $A_1$ – automato kalba
+      \in A \}$, kur $A$ – automato kalba
   \end{enumerate}
     irgi yra baigtinių automatų kalbos.
 \end{prop}
@@ -196,10 +196,10 @@ $f(n)$, jei $\exists c \,(c >0) : T_{M}(n) = cf(n), \forall n$.
   \underbrace{(0;3)}_{6},\underbrace{(1;2)}_{7},\dotsc
 \]
 
-\begin{defn}[Poros numeris \emph{Cantaro} numeracijoje]
+\begin{defn}[Poros numeris \emph{Kantaro} numeracijoje]
   Funkcija $\alpha _{2}(x, y)$. Kairiojo nario funkcija yra 
-  $\pi_{2}^{1}(n)$, o dešiniojo $\pi_{2}^{2}(n)$, kur $n$ porai priskirtas
-  numeris.
+  $\pi_{2}^{1}(n)$, o dešiniojo $\pi_{2}^{2}(n)$, kur $n$ yra porai 
+  priskirtas numeris.
 \end{defn}
 
 \begin{prop}
@@ -216,13 +216,13 @@ $f(n)$, jei $\exists c \,(c >0) : T_{M}(n) = cf(n), \forall n$.
   \end{note}
 \end{prop}
 
-\begin{defn}[Cantaro funkcijos]
+\begin{defn}[Kantaro funkcijos]
   $\alpha_{n}(x_1,x_2,\dotsc,x_n)$ – rinkinio $x_1,x_2,\dotsc,x_n$ numeris
-  Cataro numeracijoje.
+  Kantaro numeracijoje.
   $\pi^{i}_{n} (K)$ – $K$-ojo rinkinio iš $n$ elementų $i$-asis narys.
 \end{defn}
 
-Cantaro funkcijos rekurentinė išraiška:
+Kantaro funkcijos rekurentinė išraiška:
 \[
 \begin{cases}
    \alpha _{2} (x,y) = \frac{(x+y)^{2} + 3y + x}{2} \\

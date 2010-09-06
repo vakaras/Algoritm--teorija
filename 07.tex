@@ -81,12 +81,13 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
   \]
 \end{defn}
 
-\begin{defn}
+\begin{prop}
+  \label{pr1arg}
   Visų vieno argumento $\PR$ funkcijų aibė sutampa su aibe, kuriai
   priklauso funkcijos $s(x) = x+1$, 
   $q(x) = x \dotminus \left[ \sqrt{x} \right]^2$ ir kuri yra 
   uždara kompozicijos, sudėties ir iteracijos operatorių atžvilgiu.
-\end{defn}
+\end{prop}
 
 \section{Dalinai rekursyvios funkcijos}
 
@@ -129,7 +130,7 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
   \end{note}
 \end{defn}
 
-\begin{defn}[Bendrųjų reukursyviųjų funkcijų aibė ($\BR$)]
+\begin{defn}[Bendrųjų rekursyviųjų funkcijų aibė ($\BR$)]
   Aibė sudaryta iš visų $\DR$ funkcijų, kurios yra apibrėžtos su visais
   natūraliaisiais argumentais.
 \end{defn}
@@ -207,7 +208,7 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
   \end{itemize}
 \end{note}
 
-\section{Reukursyviai skaičiosios aibės}
+\section{Rekursyviai skaičiosios aibės}
 
 \begin{defn}[Rekursyviai skaiti aibė]
   \label{rsadr}
@@ -339,6 +340,271 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
   \end{itemize}
 \end{note}
 
-\subsection{Rekursyviai skaičių aibių savybės}
+Rekursyviai skaičių aibių savybės:
+\begin{enumerate}
+  \item Rekursyvi aibė $A$ yra ir rekursyviai skaiti:
+    \[
+    \exists \: \chi_{A}(a) =%
+    \begin{cases}
+      1, & \text{ jei } a \in A \\
+      0, & \text{ jei } a \not \in A
+    \end{cases},
+    \]
+    tada aibė $A$ sutampa su $\DR$ funkcijos $f(a) = \chi_{A}(a) - 1$
+    apibrėžimo sritimi. Pagal \ref{rsadr} apibrėžimą $A$ yra 
+    rekursyviai skaiti.
+  \item Baigtinė aibė yra ir rekursyvi ir rekursyviai skaiti:
+    \[
+    A = \left\{ a_1, a_2, \dotsc, a_n \right\} \text{ – baigtinė aibė.}
+    \]
+    Tada, jos charakteringoji funkcija:
+    \[
+    \chi_{A}(a) = \sg(\sgi(|a - a_1|) + \sgi(|a - a_2|) + \dotsc +%
+      \sgi(|a - a_n|)).
+    \]
+\end{enumerate}
 
-TODO
+\begin{prop}
+  Jeigu aibė $A$ yra rekursyviai skaiti, bet $A$ nėra rekursyvi, tai
+  jos papildinys $\overline{A}$ nėra nei rekursyvi, nei rekursyviai
+  skaiti aibė.
+  \begin{proof}
+    \hfill \\
+    \begin{enumerate}
+      \item Tarkime, kad $\overline{A}$ yra rekursyviai skaiti.
+      \item Tada pagal \ref{rsapr} apibrėžimą yra $\PR$ funkcija
+        $g(x)$, tokia kad $\overline{A} = \{g(0), g(1), g(2), \dotsc \}$
+      \item Kadangi aibė $A$ yra rekursyviai skaiti (duota), tai 
+        pagal \ref{rsapr} apibrėžimą yra $\PR$ funkcija $f(x)$ tokia, kad
+        $A = \{ f(0), f(1), f(2), \dotsc \}$.
+      \item Panagrinėkime funkciją 
+        $h(x) = \mu_{z}(|f(z)-x| \cdot |g(z)-x|=0)$. $h(x)$ yra
+        $\BR$, nes gauta iš $\PR$ funkcijų taikant kompozicijos, bei
+        minimizacijos operatorius ir yra apibrėžta su visais 
+        $x \, (x \in \mathbb{N})$, nes $A \cup \overline{A} = \mathbb{N}$.
+        \begin{itemize}
+          \item jei $x \in A$, tada 
+            $\exists z: f(z) = x \implies |f(z) - x| = 0$,
+          \item jei $x \not \in A \implies x \in \overline{A}$, tada
+            $\exists z: g(z) = x \implies |g(z) - x| = 0$.
+        \end{itemize}
+      \item 
+        \begin{itemize}
+          \item Jei $x \in A$, tada $h(x) = z$, kad $f(z) = x$.
+          \item Jei $x \in \overline{A}$, tada $h(x) = z$, kad 
+            $g(z) = x$ ir $f(z) \neq x$.
+        \end{itemize}
+      \item Tada aibės $A$ charakteringoji funkcija būtų:
+        \begin{align*}
+          \chi_{A}(x) &= \sgi(|f(h(x)) - x|) \\
+          &=%
+          \begin{cases}
+            \sgi(|f(z) - x|), & \text{ kur } f(z) = x, %
+              \text{ jei } x \in A\\
+            \sgi(|f(z) - x|), & \text{ kur } f(z) \neq x, %
+              \text{ jei } x \not \in A
+          \end{cases},\\
+          &=%
+          \begin{cases}
+            \sgi(0), & \text{ jei } x \in A \\
+            \sgi(y+1), & \text{ jei } x \not \in A
+          \end{cases},\\
+          &=%
+          \begin{cases}
+            1, & \text{ jei } x \in A \\
+            0, & \text{ jei } x \not \in A
+          \end{cases}.
+        \end{align*}
+      \item $\chi_{A}(x) \in \BR$, nes gauta iš $\BR$ ir $\PR$ funkcijų
+        pritaikius kompozicijos operatorių.
+      \item Kadangi $\chi_{A}(x) \in \BR$, tai $A$ – rekursyvi 
+        $\implies$ prieštara $\implies$ $\overline{A}$ – nėra rekursyviai
+        skaiti aibė.
+    \end{enumerate}
+  \end{proof}
+\end{prop}
+
+\section{Ackermann funkcijos.}
+
+Ackerman funkcijos yra:
+\begin{align*}
+  B_{0}(a, x) &= a + x \\
+  B_{1}(a, x) &= a \cdot x \\
+  B_{2}(a, x) &= a^{x} \\
+  B_{n}(a, x+1) &= B_{n-1}(a, B_{n}(a, x)) \\
+  B_{n}(a, 0) &= 1, \text{ kai } n \geq 2
+\end{align*}
+Jos yra visur apibrėžtos ir algoritmiškai apskaičiuojamos funkcijos, todėl
+yra bendrai rekursyvios funkcijos.
+
+Ackermann funkcijos variantas, kai $a=2$, yra funkcija 
+$A(n,x) = B_{n}(2, x)$. Jam teisingos lygybės ir nelygybės:
+\begin{enumerate}
+  \item $A(n+1,x+1) = B_{n+1}(2, x+1) = B_{n}(2, B_{n+1}(2, x)) = %
+    A(n, A(n+1, x))$
+  \item $A(0,x) = x+2$
+  \item $A(1,0) = 0$
+  \item $A(n,0) = 1$, kai $n \geq 2$
+  \item $A(n,x) \geq 2^{x}$, kai $n \geq 2$ ir $x \geq 1$
+  \item $A(n+1,x) > A(n,x)$, kai $n,x \geq 2$
+  \item $A(n,x+1) > A(n,x)$, kai $n,x \geq 2$
+  \item $A(n+1,x) \geq A(n,x+1)$, kai $n,x \geq 2$
+\end{enumerate}
+
+\begin{defn}[Mažoruojanti funkcija]
+  Sakysime, kad funkcija $f(x)$ yra mažoruojama\footnote{Žr. DLKŽ.} 
+  funkcijos $h(x)$, jei
+  yra toks $n_{0} \in \mathbb{N}$, kad $f(x) < h(x)$ su visais $x > n_{0}$.
+\end{defn}
+
+\begin{prop}
+  \label{fo}
+  Jei $f(x)$ yra vieno argumento $\PR$ funkcija, tai egzistuoja toks
+  $n\,(n \in \mathbb{N})$, kad
+  \[
+  f(x) < A(n,x), \text{ kai } x > 2.
+  \]
+\end{prop}
+
+\begin{prop}
+  Egzistuoja tokios funkcijos, kurios yra bendrai rekursyvios, bet nėra
+  primityviai rekursyvios.
+
+  \begin{proof}
+    Parodysime, kad funkcija $h(x) = A(x,x)$ yra $\BR$, bet nėra $\PR$.
+
+    $h(x) \in \BR$, nes ji yra visur apibrėžta, algoritmiškai 
+    apskaičiuojama funkcija.
+
+    Įrodysim, kad $h(x)$ mažoruoja bet kokią $\PR$ vieno argumento 
+    funkciją.
+
+    Tegu $f(x) \in \PR$. Iš \ref{fo} teiginio: 
+    $\exists n\,(n \in \mathbb{N})$, kad $f(x) < A(n,x)$, kai $x > 2$.
+
+    Tuomet $f(n+x) < A(n,n+x) < A(n+x,n+x) = h(n+x) \implies %
+    \exists n_{0} \, (n_{0} \in \mathbb{N})$, kad $f(x) < h(x)$, kai
+    $x > n_{0}$ $\implies$ $f(x)$ yra mažoruojama funkcijos $h(x)$.
+
+    Kadangi bet kokia vieno argumento primityviai rekursyvi funkcija yra
+    mažoruojama funkcijos $h(x)$, tai funkcija $h(x) \not \in \PR$.
+  \end{proof}
+  
+\end{prop}
+
+\section(Universaliosios funkcijos)
+
+\begin{defn}[Universalioji funkcija]
+  Tarkime, kad $A$ yra kuri nors $n$ argumentų funkcijų aibė. 
+  Funkciją $F(x_0,x_1,\dotsc,x_n)$ vadinsime aibės A universaliąja, jei
+  $A = \{ F(0,x_1,x_2,\dotsc,x_n),F(1,x_1,x_2,\dotsc,x_n),%
+  F(2,x_1,x_2,\dotsc,x_n),\dotsc$, tai yra 
+  $F(i, x_1,x_2,\dotsc,x_n) \in A (i = 0,1,2,\dotsc)$ ir nesvarbu, kokia
+  būtų $f(x_1,x_2,\dotsc,x_n) \in A$, atsiras bent vienas toks natūralusis
+  skaičius $i$, kad $f(x_1,x_2,\dotsc,x_n) = F(i,x_1,x_2,\dotsc,x_n)$.
+\end{defn}
+
+\begin{prop}
+  \begin{enumerate}
+    \item Visų $n$ argumentų $\PR$ funkcijų universalioji
+      $F(i,x_1,x_2,\dotsc,x_n) \not \in \PR$.
+    \item Visų $n$ argumentų $\BR$ funkcijų universalioji
+      $F(i,x_1,x_2,\dotsc,x_n) \not \in \BR$.
+  \end{enumerate}
+  \begin{proof}
+    \begin{enumerate}
+      \item Tegu $F(i,x_1,x_2,\dotsc,x_n) \in \PR$.
+        Imkime funkciją 
+        $g(x_1,x_2,\dotsc,x_n) = F(x_1,x_1,x_2,\dotsc,x_n)+1$.
+        $g(x_1,x_2,\dotsc,x_n) \in \PR$, nes gauta iš $\PR$ funkcijų
+        $F(i,x_1,x_2,\dotsc,x_n)$ ir $(x+y)$ pritaikius kompozicijos
+        operatorių. Kadangi $g(x_1,x_2,\dotsc,x_n)$ yra $n$ argumentų
+        $\PR$ funkcija, tai $\exists j\, (j \in \mathbb{N})$ toks, kad
+        $F(j,x_1,x_2,\dotsc,x_n) = g(x_1,x_2,\dotsc,x_n)$. Tuomet
+        paimkime $x_1 = x_2 = \cdots = x_n = j$, tada 
+        $F(j, j, j, \dotsc, j) = g(j, j, \dotsc, j) =%
+        F(j, j, j, \dotsc, j) + 1 \implies F(j, j, j, \dotsc, j)$ – 
+        neapibrėžta $\implies$ prieštara, nes visos $\PR$ funkcijos
+        yra apibrėžtos su visais argumentais, todėl mūsų prielaida, jog
+        $F(i,x_0,x_1,\dotsc,x_n) \in \PR$ yra neteisinga.
+
+      \item Tegu $F(i,x_1,x_2,\dotsc,x_n) \in \BR$.
+        Imkime funkciją 
+        $g(x_1,x_2,\dotsc,x_n) = F(x_1,x_1,x_2,\dotsc,x_n)+1$.
+        $g(x_1,x_2,\dotsc,x_n) \in \BR$, nes gauta iš $\BR$ funkcijų
+        $F(i,x_1,x_2,\dotsc,x_n)$ ir $(x+y)$ pritaikius kompozicijos
+        operatorių. Kadangi $g(x_1,x_2,\dotsc,x_n)$ yra $n$ argumentų
+        $\BR$ funkcija, tai $\exists j\, (j \in \mathbb{N})$ toks, kad
+        $F(j,x_1,x_2,\dotsc,x_n) = g(x_1,x_2,\dotsc,x_n)$. Tuomet
+        paimkime $x_1 = x_2 = \cdots = x_n = j$, tada 
+        $F(j, j, j, \dotsc, j) = g(j, j, \dotsc, j) =%
+        F(j, j, j, \dotsc, j) + 1 \implies F(j, j, j, \dotsc, j)$ – 
+        neapibrėžta $\implies$ prieštara, nes visos $\BR$ funkcijos
+        yra apibrėžtos su visais argumentais, todėl mūsų prielaida, jog
+        $F(i,x_0,x_1,\dotsc,x_n) \in \BR$ yra neteisinga.
+    \end{enumerate}
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  Visų vieno argumento $\PR$ funkcijų aibei egzistuoja universalioji
+  funkcija, kuri yra $\PR$.
+  \begin{proof}
+    Pagal \ref{pr1arg} teiginį visas vieno argumento $\PR$ funkcijas
+    galime išreikšti per bazines $s(x)$, $q(x)$ ir sudėties, kompozicijos,
+    bei iteracijos operatorius.
+    Remiantis išraiška per $s(x)$ ir $q(x)$, visoms $\PR$ vieno argumento
+    funkcijoms suteiksime numerius tokiu būdu:
+    \begin{itemize}
+      \item $n(s(x)) = 1$
+      \item $n(q(x)) = 3$
+    \end{itemize}
+    Jei $n(f(x)) = a$ ir $n(g(x)) = b$, tai
+    \begin{itemize}
+      \item $h(x) = f(x) + g(x) \implies n(h(x)) = 2 \cdot 3^a \cdot 5^b$
+      \item $h(x) = f(g(x)) \implies n(h(x)) = 4 \cdot 3^a \cdot 5^b$
+      \item $h(x) = f(x)^{i} \implies n(h(x)) = 8 \cdot 3^a$
+    \end{itemize}
+    Tarkime, turime funkciją $f_{n}(x)$, kurios numeris yra $n$. 
+    Pažymėkime $F(n,x) = f_{n}(x)$. Tada:
+    \[
+    F(n,x) =%
+    \begin{cases}
+      f_{a}(x) + f_{b}(x), & \text{ jei } n = 2\cdot3^a\cdot5^b \\
+      f_{a}(f_{b}(x)), & \text{ jei } n = 4\cdot3^a\cdot5^b \\
+      f_{a}(f_{n}(x-1)), & \text{ jei } n = 8\cdot3^a \text{ ir } x > 0 \\
+      0, & \text{ jei } n = 8\cdot3^a \text{ ir } x = 0 \\
+      s(x), & \text{ jei } n = 1 \\
+      q(x), & \text{ jei } n = 3
+    \end{cases}
+    \]
+    $F(n,x)$ yra algoritmiškai apskaičiuojama. Tada visų vieno argumento
+    $\PR$ universalioji yra:
+    \[
+    D(n,x) =%
+    \begin{cases}
+      F(n,x), & \text{ jei $n$ – kažkurios funkcijos numeris}
+      0, & \text{ kitu atveju }
+    \end{cases}.
+    \]
+    $D(n,x) \in \BR$, nes yra algoritmiškai apskaičiuojama ir visur 
+    apibrėžta.
+  \end{proof}
+\end{prop}
+
+\begin{prop}
+  Visų $n$ argumentų $\PR$ funkcijų universalioji yra funkcija:
+  \[
+  D^{n+1}(x_0,x_1,x_2,\dotsc,x_n) = D(x_0,\alpha_n(x_1,x_2,\dotsc,x_n))
+  \]
+\end{prop}
+
+\begin{defn}
+  $\DR$ $n$ argumentų funkcijos grafikas yra taškų, sudarytų iš 
+  $(n+1)$ elemento, aibė:
+  \[
+  G = \{ (x_1,x_2,\dotsc,x_n,y): f(x_1,x_2,\dotsc,x_n) = y \}
+  \]
+\end{defn}
+
+

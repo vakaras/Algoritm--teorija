@@ -17,8 +17,13 @@
 
 \DeclareMathOperator{\at}{at}
 \DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\sg}{sg}
 
 \newcommand\dotminus{\mathop{\mbox{$-^{\hspace{-.5em}\cdot}\,\,$}}}
+\newcommand\sgi{\mathop{\overline{\sg}}}
+\newcommand\PR{\mathop{\text{PR}}}
+\newcommand\BR{\mathop{\text{BR}}}
+\newcommand\DR{\mathop{\text{DR}}}
 
 
 % Apibrėžimai, teiginiai, pastabos.
@@ -39,10 +44,11 @@
 \newtheorem*{notation}{Žymėjimas}
 
 \title{%
-Adomo Birštūno\\
+Adomo Birštuno\\
 Algoritmų teorijos paskaitų konspektas}
 
 \author{}
+\date{\today}
 
 \begin{document}
 
@@ -57,7 +63,7 @@ Algoritmų teorijos paskaitų konspektas}
 %
 %
 %
-
+%
 
 \maketitle
 \bigskip
@@ -67,13 +73,7 @@ Algoritmų teorijos paskaitų konspektas}
 \input{03.tex}                          % Sekvencinis skaičiavimas.
 \input{04.tex}                          % Rezoliucijų metodas.
 \input{05.tex}                          % Turingo mašinos.
-% \input{07.tex}                          % Algoritmų sudėtingumas.
-% \input{08.tex}                          % Rekursyviosios funkcijos.
-% \input{09.tex}                          % Lambda skaičiavimas.
-% \input{10.tex}                          % Rekursyviai skaičios ir 
-%                                         % rekursyvios aibės.
-% \input{11.tex}                          % Universaliosios funkcijos.
-
-%\input{06.tex}                          % Baigtiniai automatai.
+\input{06.tex}                          % Lambda skaičiavimas.
+\input{07.tex}                          % Primityviai rekursyvios funkcijos.
 
 \end{document}
