@@ -25,10 +25,13 @@
   $\Sigma$ simboliais $\cod(x_1,x_2,\dotsc,x_n) = \tilde{x}$, kuriam
   teisinga:
   \begin{enumerate}
-    \item jei $f(x_1,x_2,\dotsc,x_n) = y$ (funkcija apibrėžta), tada 
-      \emph{TM} $M$ su pradiniais duomenimis $\cod(x_1,x_2,\dotsc,x_n)$
-      yra apibrėžta ir baigus darbą, į dešinę nuo skaitymo galvutės yra
-      žodis $\cod(y)$;
+    \item
+      \begin{sloppypar}
+        jei $f(x_1,x_2,\dotsc,x_n) = y$ (funkcija apibrėžta), tada
+        \emph{TM} $M$ su pradiniais duomenimis $\cod(x_1,x_2,\dotsc,x_n)$
+        yra apibrėžta ir baigus darbą, į dešinę nuo skaitymo galvutės yra
+        žodis $\cod(y)$;
+      \end{sloppypar}
     \item jei $f(x_1,x_2,\dotsc,x_n)$ – neapibrėžta, tada \emph{TM} $M$
       su pradiniais duomenimis $\cod(x_1,x_2,\dotsc,x_n)$ irgi yra
       neapibrėžta.
@@ -41,12 +44,17 @@
     \item[$\Sigma$] – baigtinė aibė – abėcėlė.
     \item[$Q$] – baigtinė būsenų aibė.
     \item[$F$] – galutinių būsenų aibė. ($F \subset Q$)
-    \item[$\delta$] – perėjimų funkcija. \\
-      ($\delta: Q \times \underbrace{\Sigma \times \Sigma \times \cdots%
-        \times \Sigma}_{m} \to Q \times \underbrace{%
+    \item[$\delta$] – perėjimų funkcija:
+      \begin{align*}
+        \delta:
+        Q &\times \underbrace{\Sigma \times \Sigma \times \cdots
+          \times \Sigma}_{m}
+        \to\\
+        Q &\times \underbrace{%
           \Sigma \times \Sigma \times \cdots \times \Sigma}_{m}%
         \times \underbrace{
-          \{K,D,N\} \times \{K,D,N\} \times \cdots \times \{K,D,N\}}_{m}$)
+          \{K,D,N\} \times \{K,D,N\} \times \cdots \times \{K,D,N\}}_{m}
+      \end{align*}
   \end{description}
 \end{defn}
 
