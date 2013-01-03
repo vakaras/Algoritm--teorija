@@ -8,6 +8,13 @@
     'glossary': False,
     # style.sty options
     # other options
+    'git': [
+        ('dump_log', {
+            'output': 'git_log.tex',
+            'format': 'format:%H&&\\\\\n%an & %ai & %s \\\\\n\\hline\n',
+            'path': '../content',
+            }),
+        ],
     'template_files': [
         'main.tex',
         'chapters.tex',
