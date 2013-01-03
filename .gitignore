@@ -1,1 +1,5 @@
-article.pdf
+.lock-waf_linux2_build
+Makefile
+bin/
+build/
+wscript
