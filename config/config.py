@@ -3,6 +3,7 @@
     # main.tex options
     'use_bibliography': False,
     'extra_packages': [
+        ('longtable', ''),
         ],
     'glossary': False,
     # style.sty options
