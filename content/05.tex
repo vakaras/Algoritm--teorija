@@ -94,6 +94,12 @@
 
     $F_{A \cap B}$ – visos viršūnės $(q_i,q_j)$, kur $q_i \in F_{A}$
     ir $q_j \in F_{B}$.
+
+    Baigtinis automatas, kurio perėjimų funkcija vaizduojama grafu
+    $G_1 \times G_2$, pradinė būsena yra $(q_0, q_0)$ ir kurio
+    galutinių būsenų aibė yra $F_{A \cup B}$, turės kalbą
+    $A_1 \cup A_2$. Atitinkamai, baigtinis automatas, kurio galutinių
+    būsenų aibė yra $F_{A \cap B}$, turės kalbą $A_1 \cap A_2$.
   \end{proof}
 \end{prop}
 
@@ -231,23 +237,27 @@ Kantaro funkcijos rekurentinė išraiška:
 \end{cases}
 \]
 
-\begin{note}
-  \begin{alltt}
-\$ python3
->>> def \(\alpha\)(*numbers):
+\begin{note} \hfill
+\begin{minted}{python}
+>>> def alpha(*numbers):
 ...   if len(numbers) == 2:
 ...     x, y = numbers
 ...     return ((x+y)**2 + 3*x + y)/2
 ...   elif len(numbers) > 2:
-...     return \(\alpha\)(numbers[0], \(\alpha\)(*numbers[1:]))
+...     return alpha(numbers[0], alpha(*numbers[1:]))
 ...   else:
 ...     raise Exception('Netinkamas argumentų kiekis!')
->>> \(\alpha\)(1,0,1,2)
+>>> alpha(1,0,1,2)
 436.0
-  \end{alltt}
+\end{minted}
 \end{note}
 
 \begin{exmp}
+  Šis pavyzdys iliustruoja kaip į kiekvieną $n$-argumentų funkciją
+  galima žiūrėti kaip į 1-argumento funkciją, kur argumentas yra
+  atitinkamo rinkinio numeris. Šiuo atveju $f(x,y)$ yra 2 argumentų
+  funkcija, o ją atitinkanti vieno argumento funkcija yra $g(z)$ (iš
+  esmės abi jos skaičiuoja tą patį).
   \begin{align*}
     f(x,y) &= 3x + y \\
     g(z) &= 3 \pi^{1}_{2}(z) + \pi^{2}_{2}(z) \\
@@ -381,7 +391,7 @@ Kantaro funkcijos rekurentinė išraiška:
   (Rice teorema.) Jei aibė $X$ yra vieno argumento dalinai rekursyvių
   funkcijų aibė ir nesutampa nei su $\emptyset$, nei su visa vieno
   argumento dalinai rekursyvių funkcijų aibe (yra poaibis), tai 
-  aibė $A = (x : \varphi_{x} \in X)$ nėra rekursyvi.
+  aibė $A = \left\{ x : \varphi_{x} \in X \right\}$ nėra rekursyvi.
   \begin{exmp}
     $X$ – funkcijų, kurios visada grąžina $1$ aibė: $X = \{ f(x) = 1 \}$.
     Tada $A = \{ x : \varphi_{x} \in X \}$ nėra rekursyvi $\implies$

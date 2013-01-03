@@ -99,10 +99,6 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
   \]
   tai yra pati mažiausia natūrali $y$ reikšmė, kuriai teisinga
   $g(x_1,x_2,\dotsc,x_{n-1},y) = x_n$.
-
-  \begin{exmp}
-    $f(x,y) = \mu_{z}((s(z)\dotminus x)\cdot \sg(y \dotminus z)=x)$
-  \end{exmp}
 \end{defn}
 
 \begin{defn}[Dalinai rekursyvių funkcijų aibė (DR)]
@@ -168,7 +164,7 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
         x \dotminus y &=%
         \begin{cases}
           x - y, & \text{ jei } x > y \\
-          0, & \text{ kit atveju}
+          0, & \text{ kitu atveju}
         \end{cases}, \\
         x + y,& \\
         x \cdot y, & \\
@@ -207,6 +203,48 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
       \]
   \end{itemize}
 \end{note}
+
+\begin{exmp}
+  Tarkime, kad turime funkciją
+  \begin{equation*}
+    g(x, y, z) = (s(z) \dotminus x) \cdot \sg(y \dotminus z).
+  \end{equation*}
+  Iš jos, pritaikę minimizacijos operatorių, galime gauti funkciją:
+  \begin{align*}
+    f'(x_1, x_2, x_3)
+    &= \mu_y(g(x_1, x_2, y) = x_3) \\
+    &= \mu_y((s(y) \dotminus x_1) \cdot \sg(x_2 \dotminus y) = x_3). \\
+  \end{align*}
+  Dabar galime apibrėžti naują funkciją $f(x, y)$:
+  \begin{align*}
+    f(x, y)
+    &= f'(x, y, x) \\
+    &= \mu_z((s(z) \dotminus x) \cdot \sg(y \dotminus z) = x).
+  \end{align*}
+  Apskaičiuokime $f(1, 3)$:
+  \begin{enumerate}
+    \item Įsistatome reikšmes:
+      \begin{equation*}
+        f(1, 3) = \mu_z((s(z) \dotminus 1) \cdot \sg(3 \dotminus z) = 1).
+      \end{equation*}
+    \item Tikriname $z = 0$:
+      \begin{equation*}
+        (s(0) \dotminus 1) \cdot \sg(3 \dotminus 0)
+          = (1 \dotminus 1) \cdot \sg(3)
+          = 0 \cdot 1
+          = 0
+          \neq 1
+      \end{equation*}
+    \item Tikriname $z = 1$:
+      \begin{equation*}
+        (s(1) \dotminus 1) \cdot \sg(3 \dotminus 1)
+          = (2 \dotminus 1) \cdot \sg(2)
+          = 1 \cdot 1
+          = 1
+      \end{equation*}
+  \end{enumerate}
+  Taigi gavome, kad $f(1, 3) = 1$.
+\end{exmp}
 
 \section{Rekursyviai skaičiosios aibės}
 
@@ -264,7 +302,7 @@ jei jo charakteringoji funkcija priklauso \emph{PR}.
         \[
         A = \left\{ h(0),h(1),h(2),h(3),\dotsc \right\}.
         \]
-        Imkime funkciją $f(a,x) = |h(x)-a|$. $f(x) \in \PR$, nes gauta
+        Imkime funkciją $f(a,x) = |h(x)-a|$. $f(a, x) \in \PR$, nes gauta
         iš $\PR$ funkcijų pritaikius kompozicijos operatorių. Lygtis
         $f(a,x) = 0$ yra $|h(x) - a| = 0$.
         \begin{itemize}
@@ -359,8 +397,8 @@ Rekursyviai skaičių aibių savybės:
     \]
     Tada, jos charakteringoji funkcija:
     \[
-    \chi_{A}(a) = \sg(\sgi(|a - a_1|) + \sgi(|a - a_2|) + \dotsc +%
-      \sgi(|a - a_n|)).
+    \chi_{A}(a) = \sgi(|a - a_1|) + \sgi(|a - a_2|) + \dotsc +%
+      \sgi(|a - a_n|).
     \]
 \end{enumerate}
 
@@ -369,7 +407,6 @@ Rekursyviai skaičių aibių savybės:
   jos papildinys $\overline{A}$ nėra nei rekursyvi, nei rekursyviai
   skaiti aibė.
   \begin{proof}
-    \hfill \\
     \begin{enumerate}
       \item Tarkime, kad $\overline{A}$ yra rekursyviai skaiti.
       \item Tada pagal \ref{rsapr} apibrėžimą yra $\PR$ funkcija
@@ -409,6 +446,10 @@ Rekursyviai skaičių aibių savybės:
             \sgi(0), & \text{ jei } x \in A \\
             \sgi(y+1), & \text{ jei } x \not \in A
           \end{cases},\\
+          \intertext{%
+            Čia su $y+1$ norėta pasakyti, kad tai kažkas $> 0$. Taip ir
+            bus, jei $y$ yra bet koks natūralusis skaičius.
+          }
           &=%
           \begin{cases}
             1, & \text{ jei } x \in A \\
@@ -497,14 +538,18 @@ $A(n,x) = B_{n}(2, x)$. Jam teisingos lygybės ir nelygybės:
 \begin{defn}[Universalioji funkcija]
   Tarkime, kad $A$ yra kuri nors $n$ argumentų funkcijų aibė. 
   Funkciją $F(x_0,x_1,\dotsc,x_n)$ vadinsime aibės A universaliąja, jei
-  $A = \{ F(0,x_1,x_2,\dotsc,x_n),F(1,x_1,x_2,\dotsc,x_n),%
-  F(2,x_1,x_2,\dotsc,x_n),\dotsc$, tai yra 
-  $F(i, x_1,x_2,\dotsc,x_n) \in A (i = 0,1,2,\dotsc)$ ir nesvarbu, kokia
-  būtų $f(x_1,x_2,\dotsc,x_n) \in A$, atsiras bent vienas toks natūralusis
-  skaičius $i$, kad $f(x_1,x_2,\dotsc,x_n) = F(i,x_1,x_2,\dotsc,x_n)$.
+  \begin{equation*}
+    A = \{ F(0,x_1,x_2,\dotsc,x_n), F(1, x_1, x_2, \dotsc, x_n),
+    F(2,x_1,x_2,\dotsc,x_n), \dotsc \},
+  \end{equation*}
+  tai yra, jei $F(i, x_1,x_2,\dotsc,x_n) \in A$ $(i = 0,1,2,\dotsc)$ ir
+  nesvarbu, kokia būtų $f(x_1,x_2,\dotsc,x_n) \in A$, atsiras bent
+  vienas toks natūralusis skaičius $i$, kad $f(x_1,x_2,\dotsc,x_n) =
+  F(i,x_1,x_2,\dotsc,x_n)$.
 \end{defn}
 
 \begin{prop}
+  \hfill
   \begin{enumerate}
     \item Visų $n$ argumentų $\PR$ funkcijų universalioji
       $F(i,x_1,x_2,\dotsc,x_n) \not \in \PR$.
@@ -563,7 +608,7 @@ $A(n,x) = B_{n}(2, x)$. Jam teisingos lygybės ir nelygybės:
     \begin{itemize}
       \item $h(x) = f(x) + g(x) \implies n(h(x)) = 2 \cdot 3^a \cdot 5^b$
       \item $h(x) = f(g(x)) \implies n(h(x)) = 4 \cdot 3^a \cdot 5^b$
-      \item $h(x) = f(x)^{i} \implies n(h(x)) = 8 \cdot 3^a$
+      \item $h(x) = f(x)^{I} \implies n(h(x)) = 8 \cdot 3^a$
     \end{itemize}
     Tarkime, turime funkciją $f_{n}(x)$, kurios numeris yra $n$. 
     Pažymėkime $F(n,x) = f_{n}(x)$. Tada:
