@@ -17,6 +17,8 @@
         ],
     'template_files': [
         'main.tex',
+        'pre-text.tex',
+        'post-text.tex',
         'chapters.tex',
         'documentation.cls',
         'lithuanian.lbx',
